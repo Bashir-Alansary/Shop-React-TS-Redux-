@@ -1,0 +1,1 @@
+1- in productimgs file we have a problem with the type of e event

@@ -1,0 +1,77 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(180deg,#d5d5d5, #f6f6f6);
+
+    .container {
+        height: 100%;
+
+        .content {
+            align-items: center;
+            height: 100%;
+
+            .logo {
+                width: fit-content;
+                img {
+                    width: 100px;
+                }
+            }
+
+            .links li {
+                margin-left: 20px;
+            }
+
+            
+            .options {
+                button {
+                    background: none;
+                }
+
+                .login-search {
+                    margin-right: 40px;
+                    align-items: center;
+
+                    .icon {
+                        font-size: 20px;
+                    }
+
+                    .wish {
+                        margin: 0 20px;
+                    }
+
+                    .login {
+                        color: unset;
+                    }
+                }
+
+                .cart-btn {
+                    position: relative;
+
+                    img {
+                        width: 50px;
+                    }
+                    
+                    span.num {
+                        $val: 15px; //var
+                        position: absolute;
+                        top: -2px;
+                        min-width: $val;
+                        height: $val;
+                        left: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        font-size: 10px;
+                        background: #f35f26;
+                        padding: 3px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

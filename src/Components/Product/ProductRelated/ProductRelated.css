@@ -1,0 +1,11 @@
+.product-related {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .product-related {
+        flex-wrap: wrap;
+    }
+}

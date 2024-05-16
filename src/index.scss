@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* nav height = inner padding*/
+$navHeight: 90px;
+.navbar {
+    height: $navHeight;
+}
+
+.App .inner {
+    padding-top: $navHeight
+}
+
+
+/* constants */
+.container {
+  width: 94%;
+  margin: 0 auto;
+}
+
+.flx {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+/* table */
+table {
+  width: 100%;
+  background: beige;
+
+  th, td {
+      text-align: center;
+  }
+
+  th {
+      background: beige;
+      padding: 7px 0;
+  }
+  td {
+      background: #f8f8f8;
+      &:first-of-type {
+          width: 75px;
+          img {
+              width: 100%;
+          }
+      }
+
+      input {
+          width: 40px;
+      }
+
+      
+  }
+}
+
+/* special-btn */
+.special-btn {
+  $radiusVal: 6px;
+  
+  position: relative;
+  background: rgb(15, 3, 44);
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: $radiusVal;
+
+  &::before {
+    $direction: 4px;
+
+    position: absolute;
+    content: "";
+    display: block;
+    top: $direction;
+    left: $direction;
+    bottom: $direction;
+    right: $direction;
+    border: 2px solid transparent;
+    border-radius: $radiusVal/2;
+    transition: 0.5s;
+  }
+  &:hover::before {
+    border: 2px solid #fff;
+  }
+}

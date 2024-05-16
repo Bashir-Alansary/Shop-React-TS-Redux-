@@ -1,0 +1,41 @@
+.product-about {
+    margin-top: 100px;
+}
+
+.product-about .parties {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-about .parties .part {
+    margin-right: 40px;
+}
+
+.product-about .part button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.5s;
+}
+
+.product-about .part button.active-part {
+    border-bottom: 2px solid #410486;
+}
+
+.product-about .part-content {
+    margin: 40px 0;
+}
+
+.info .table td:last-child, 
+.info .table td:first-child, 
+.info .table th:last-child, 
+.info .table th:first-child {
+    width: unset;
+}
+
+.info .table td {
+    height: unset;
+}

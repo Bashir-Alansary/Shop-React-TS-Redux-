@@ -1,0 +1,102 @@
+.product-reviews {
+
+}
+
+.product-reviews .reviews-content {
+
+}
+
+.product-reviews .reviews-content .review {
+    padding: 10px;
+}
+
+.product-reviews .review {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f1efef;;
+}
+
+.product-reviews .review .imgbx img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.product-reviews .review .details {
+    margin-left: 20px;
+}
+
+.product-reviews .review .details .rate {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.product-reviews .details h4 {
+    text-transform: uppercase;
+    color: rgb(83, 52, 117);
+    margin: 0;
+}
+
+.product-reviews .details .date {
+    font-size: 12px;
+}
+
+.product-reviews .details p {
+    color: #888;
+    font-size: 14px;
+    margin: 0;
+}
+
+.product-reviews form {
+    margin-top: 40px;
+}
+
+.product-reviews textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #e7e4e4;
+}
+
+.product-reviews input {
+    width: 49%; 
+    height: 47px;
+    padding: 10px;
+    border: 1px solid #e7e4e4;  
+}
+
+.product-reviews input:focus,
+.product-reviews textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #c2a4f3;
+}
+
+.product-reviews input#name {
+    margin-right: 2%;
+}
+
+.product-reviews form button.submit {
+    margin-top: 30px;
+    border: none;
+    width: 100px;
+    height: 45px;
+    font-size: 16px;
+    background: rgb(83, 52, 117);
+    color: #fff;
+}
+
+.review-inputs {
+    margin-bottom: 10px;
+}
+
+.review-inputs button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.review-inputs button .star {
+    font-size: 20px;
+}
