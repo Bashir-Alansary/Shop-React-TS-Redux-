@@ -76,7 +76,7 @@ export const shopSlice = createSlice({
 
         removeFromCart: (state, action:PayloadAction<IDSize>) => {
             const {id, size} = action.payload;
-            state.cart.cartItems = state.cart.cartItems.filter((item:any) => (item.id !== id) || (item.id === id) && item.chosenSize !== size);
+            state.cart.cartItems = state.cart.cartItems.filter((item:any) => item.id !== id);
             
         },
 
@@ -112,9 +112,6 @@ export const shopSlice = createSlice({
                 
                 state.cart.total = itemsTotal.reduce((a, b) => a + b);
                 state.cart.amount = itemsAmount.reduce((a, b) => a + b);
-            } else {
-                state.cart.total = 0
-                state.cart.amount = 0
             }
         },
 

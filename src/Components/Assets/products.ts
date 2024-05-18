@@ -227,7 +227,7 @@ let products = [
     newPrice: 150,
     oldPrice: 160,
     imgs: [img1, img2, img3, img4],
-    sizes: ["L", "ML", "XL", "XXL"],
+    sizes: ["S", "ML", "XL", "XXL"],
     color: "Green",
     type: "Outfits",
     tags: ["boys", "clothes", "brands", "shirt"],

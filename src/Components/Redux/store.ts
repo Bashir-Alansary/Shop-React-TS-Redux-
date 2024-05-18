@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import shopSlice from "./Slices/shopSlice";
 import wishSlice from "./Slices/wishSlice";
+import compareSlice from "./Slices/compareSlice";
 
 
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     reducer: {
         shop: shopSlice,
         wish: wishSlice,
+        compare: compareSlice,
     }
 })
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -10,9 +10,11 @@ import cart from "../Assets/images/cart.png"
 import wishlist from "../Assets/images/wishlist.png"
 
 import "./Navbar.scss"
+import { SubCart } from '../SubCart/SubCart';
 
 export const Navbar:FC = () => {
     const {amount} = useSelector((state:RootState) => state.shop.cart);
+    const [showSubcart, setShowSubcart] = useState<boolean>(false);
   return (
     <div className='navbar'>
         <div className='container'>
@@ -27,16 +29,17 @@ export const Navbar:FC = () => {
             </ul>
             <div className='options flx'>
                 <div className='login-search flx'>
-                    <button className="search">
+                    <button className="search op-btn">
                         <FiSearch className='icon' />
                     </button>
                     <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
                     <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
                 </div>
-                <button className='cart-btn'>
+                <button className='cart-btn op-btn' onClick={()=> setShowSubcart(true)}>
                     <span className='num'>{amount}</span>
                     <img src={cart} />
                 </button>
+                <SubCart showSubcart = {showSubcart} setShowSubcart = {setShowSubcart} />
             </div>
             </div>
         </div>

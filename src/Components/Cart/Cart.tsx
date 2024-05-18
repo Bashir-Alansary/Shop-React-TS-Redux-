@@ -2,17 +2,16 @@ import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
 import "./Cart.scss"
-import { addToCart,
+import {
     decreaseAmount,
-    getItemTotals,
-    getTotal,
     increaseAmount,
     removeFromCart
 } from '../Redux/Slices/shopSlice';
 
-const Cart:FC = () => {
+export const Cart = () => {
     const cart = useSelector((state:RootState) => state.shop.cart);
     const {cartItems, amount, total} = cart;
+    
     const dispatch = useDispatch();
     
   return (
@@ -31,21 +30,24 @@ const Cart:FC = () => {
                 </thead>
                 <tbody>
                     {
-                        cartItems.map(item => {
-                            const {id, img, name, newPrice, amount, total} = item;
+                        cartItems.map((item, i) => {
+                            const {id, img, name, newPrice, amount, total, chosenSize} = item;
                             return(
-                                <tr key={id}>
+                                <tr key={i}>
                                     <td><img src={img} /></td>
-                                    <td>{name}</td>
+                                    <td>
+                                        <h3>{name}</h3>
+                                        <span>{chosenSize}</span>
+                                    </td>
                                     <td>{newPrice}</td>
                                     <td className='amount'>
-                                        <button onClick={() => dispatch(increaseAmount(id))}>+</button> 
+                                        <button onClick={() => dispatch(increaseAmount({id, size: chosenSize}))}>+</button> 
                                         <input type='number' value = {amount} onChange={()=>console.log("input")}/>
-                                        <button onClick={() => dispatch(decreaseAmount(id))}>-</button> 
+                                        <button onClick={() => dispatch(decreaseAmount({id, size: chosenSize}))}>-</button> 
                                     </td>
                                     <td>{total}</td>
                                     <td>
-                                    <button onClick={() => dispatch(removeFromCart(id))}>X</button>
+                                    <button onClick={() => dispatch(removeFromCart({id, size: chosenSize}))}>X</button>
                                     </td>
                                 </tr>
                             )
@@ -59,5 +61,3 @@ const Cart:FC = () => {
     </div>
   )
 }
-
-export default Cart;

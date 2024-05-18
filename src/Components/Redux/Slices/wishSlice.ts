@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice } from "@reduxjs/toolkit";
 import products from "../../Assets/products";
 import { ProductType } from "../../Assets/types";
 
@@ -9,12 +9,13 @@ const initialState: WishState = {
     wishItems: [],
 }
 
-export const shopSlice = createSlice({
-    name: 'shop',
+
+export const wishSlice = createSlice({
+    name: 'wish',
     initialState,
     reducers: {
         addToWish: (state, action) => {
-            const theItem:any = state.wishItems.find((item:any) => item.id === action.payload);
+            const theItem:ProductType | undefined = state.wishItems.find((item:ProductType) => item.id === action.payload);
             if (theItem === undefined) {
                 const item:any = products.find((item:any) => item.id === action.payload)
                 state.wishItems = [...state.wishItems, item];
@@ -32,6 +33,6 @@ export const shopSlice = createSlice({
 
 export const {
     addToWish,
-    removeFromWish
-} = shopSlice.actions;
-export default shopSlice.reducer;
+    removeFromWish,
+} = wishSlice.actions;
+export default wishSlice.reducer;

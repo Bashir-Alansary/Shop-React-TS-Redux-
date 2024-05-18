@@ -14,6 +14,15 @@ interface Product {
     desc: string,
 }
 
+export const isItemExist = (id: number, list: Product[]): boolean => {
+    const theItem:Product | undefined = list.find((item) => item.id === id);
+    if (theItem === undefined) {
+        return false
+    } else {
+        return true
+    }
+  }
+
 export type { Product as ProductType }
 
 

@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import "./ProductDetails.css"
+import React, {FC, useState} from 'react'
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 import { Link } from 'react-router-dom'
 import { DiGitCompare } from "react-icons/di";
@@ -7,77 +6,99 @@ import { FiHeart, FiShare2 } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
-import { useShopContext } from '../../../Context/ShopContext';
 import {paymentMethods} from "./ProductDetailsData"
+import { ProductType, isItemExist } from '../../Assets/types';
 
-export default function ProductDetails({product}) {
+import "./ProductDetails.css"
+import { useDispatch, useSelector } from 'react-redux';
+import { addToWish } from '../../Redux/Slices/wishSlice';
+import { RootState } from '../../Redux/store';
+import { addToCompare } from '../../Redux/Slices/compareSlice';
+import { addAmountToItem } from '../../Redux/Slices/shopSlice';
+import { Value } from 'sass';
+
+interface Props {
+  product: ProductType,
+}
+
+export const ProductDetails:FC<Props> = ({product}) => {
   
   const {id, name, category, desc, newPrice, oldPrice, sizes} = product;
+  const {wishItems} = useSelector((state:RootState) => state.wish)
+  const {compareItems} = useSelector((state:RootState) => state.compare)
+  const dispatch = useDispatch();
 
-  const {
-    addedAmount, 
-    setAddedAmount, 
-    addAddedAmount, 
-    addedMsg, 
-    setAddedMsg, 
-    disabledBtn, 
-    setDisabledBtn, 
-    wishlist, 
-    addToWishlist,
-    compareList,
-    addToCompareList,
-  } = useShopContext();
+  const [amount, setAmount] = useState<number>(1);
+  const [size, setSize] = useState<string>(product.sizes[0]);
 
-  const [size, setSize] = useState(sizes[0]);
+  const[wishLoad, setWishLoad] = useState<boolean>(false);
+  const[compareLoad, setCompareLoad] = useState<boolean>(false);
+  const[addLoad, setAddLoad] = useState<boolean>(false);
 
-  const[wishLoad, setWishLoad] = useState(false);
-  const[compareLoad, setCompareLoad] = useState(false);
-  const[addLoad, setAddLoad] = useState(false);
-
-  const addToWishBtn = (id) => {
+  const addToWishBtn = (id:number): void => {
     setWishLoad(true);
     setTimeout(function() {
-      addToWishlist(id);
+      dispatch(addToWish(id));
       setWishLoad(false);
     }, 1000);
   }
 
-  const addToCompareBtn = (id) => {
+  const addToCompareBtn = (id:number): void => {
     setCompareLoad(true);
     setTimeout(function() {
-      addToCompareList(id);
+      dispatch(addToCompare(id));
       setCompareLoad(false);
     }, 1000);
   }
 
-  const addAddedAmountBtn = (id) => {
+  const handleAddAmount = (id:number): void => {
     setAddLoad(true);
     setTimeout(function() {
-      addAddedAmount(id);
+      dispatch(addAmountToItem({id, size, amount}));
+      setAmount(1);
       setAddLoad(false);
     }, 1000);
   }
 
-  const decreaseAddedAmount = () => {
-    if (addedAmount > 1) {
-      setAddedAmount(addedAmount - 1)
+  const chooseSize = (val: string): void => {
+    setSize(val);
+  }
+
+  const handleChange = (e:any): void => {
+    if (e.target.value >= 0) {
+      setAmount(1);
     } else {
-      setAddedAmount(1);
+      setAmount(e.target.value);
     }
   }
 
-  const checkAvailableSize = (index, item) => {
-    if (index === 0 || index === 1) {
-      setAddedMsg({text: "10 in stock", class: "msg done", availablity: true});
-      setDisabledBtn(false);
-    } else {
-      setAddedMsg({text: "sold Out", class: "msg warning", availablity: true});
-      setDisabledBtn(true);
+  const decreaseVal = (): void => {
+    if (amount > 1) {
+      setAmount(amount - 1);
     }
-    setSize(item);
   }
 
-  const shareOnFacebook = () =>{
+  // const decreaseAddedAmount = () => {
+  //   if (addedAmount > 1) {
+  //     setAddedAmount(addedAmount - 1)
+  //   } else {
+  //     setAddedAmount(1);
+  //   }
+  // }
+
+  // const checkAvailableSize = (index, item) => {
+  //   if (index === 0 || index === 1) {
+  //     setAddedMsg({text: "10 in stock", class: "msg done", availablity: true});
+  //     setDisabledBtn(false);
+  //   } else {
+  //     setAddedMsg({text: "sold Out", class: "msg warning", availablity: true});
+  //     setDisabledBtn(true);
+  //   }
+  //   setSize(item);
+  // }
+
+
+  const shareOnFacebook = (): void =>{
     const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' +
      'https://github.com/knoldus/angular-facebook-twitter.git';
     window.open(navUrl , '_blank');
@@ -111,7 +132,7 @@ export default function ProductDetails({product}) {
                 <button 
                 key={index}
                 className = {item === size ? "size active" : "size"}
-                onClick={()=>checkAvailableSize(index, item)} >
+                onClick={()=>chooseSize(item)} >
                 {item} 
                 </button>
             )
@@ -120,31 +141,30 @@ export default function ProductDetails({product}) {
       </ul>
       <div className="add-to-cart">
         <div className='inputs-content'>
-          <div className={disabledBtn? 'amount disabled' : 'amount'}>
+          <div className='amount'>
             <div className='num'>
-              <input type="number" min={0} value={addedAmount} onChange={(e)=>setAddedAmount(e.target.value)} />
+              <input type="number" min={0} value={amount} onChange={(e:any) =>setAmount(parseInt(e.target.value))} />
             </div>
             <div className='control'>
-              <button onClick={()=>setAddedAmount(addedAmount + 1)}>+</button>
-              <button onClick={decreaseAddedAmount}>-</button>
+              <button onClick={()=> setAmount(amount + 1)}>+</button>
+              <button onClick={decreaseVal}>-</button>
             </div>
           </div>
           <button 
-          className={disabledBtn? 'add disabled' : 'add'} 
-          disabled={disabledBtn ? true : false} 
-          onClick={()=>addAddedAmountBtn(id)}
+          className='add'
+          onClick={() => handleAddAmount(id)}
           >
-          {disabledBtn ? "sold out" : addLoad ? <AiOutlineReload className='load'/>  : 'add'}
+          {addLoad ? <AiOutlineReload className='load'/>  : 'add'}
           </button>
         </div>
-        <p className={addedMsg.class}>
-          {addedMsg.availablity && <b>Availabilty: </b>}<span>{addedMsg.text}</span>
+        <p>
+          massage
         </p>
       </div>
       <hr />
       <div className='interact'>
         <div className='box'>
-          {wishlist[id] === "favorite"?
+          {isItemExist(id, wishItems) ? 
           <Link to="/wishlist" className="link icon-btn">
             <FaHeart /> <span className='title'>View wishlist</span>
           </Link>
@@ -154,7 +174,7 @@ export default function ProductDetails({product}) {
           </button>}
         </div>
         <div className='box'>
-          {compareList[id] === "compare"? 
+          {isItemExist(id, compareItems) ?
           <Link to="/compare" className="link icon-btn">
             <MdDoneOutline /> <span className='title'>View compare list</span>
           </Link>

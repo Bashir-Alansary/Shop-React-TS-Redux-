@@ -38,40 +38,38 @@ export const ProductImgs:FC<Props> = ({product}) => {
     }, [product]);
 
   return (
-    <div>
-        <div className='product-imgs flx'>
-            <ul className='imgs-btns'>
-                {
-                    imgs.map((item, index) => {
-                        return(
-                            <li className='img-btn'>
-                                <button onClick={()=> showMainImg(index)}>
-                                    <img src = {item} />
-                                </button>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-            <div className='main-img'>
-                <img
-                src = {mainImg}
-                onMouseEnter = {()=>{setShowZoomImg(true); window.scrollTo(0,0);}}
-                onMouseLeave = {()=>setShowZoomImg(false)}
-                onMouseMove = {handleZoomImg}
-                onClick={(event)=> {}}
-                />
-                {showZoomImg && <div
-                className = "zoom-img"
-                style = {{
-                    left: `${cursorPosition.x - 120}px`,
-                    top: `${cursorPosition.y - 120}px`,
-                    backgroundImage: `url(${mainImg})`,
-                    backgroundPosition: `${zoomImgPosition.x}% ${zoomImgPosition.y}%`,
-                }}
-                ></div>
-                }
-            </div>
+    <div className='product-imgs flx'>
+        <ul className='imgs-btns'>
+            {
+                imgs.map((item, index) => {
+                    return(
+                        <li className='img-btn'>
+                            <button onClick={()=> showMainImg(index)}>
+                                <img src = {item} />
+                            </button>
+                        </li>
+                    )
+                })
+            }
+        </ul>
+        <div className='main-img'>
+            <img
+            src = {mainImg}
+            onMouseEnter = {()=>{setShowZoomImg(true); window.scrollTo(0,0);}}
+            onMouseLeave = {()=>setShowZoomImg(false)}
+            onMouseMove = {handleZoomImg}
+            onClick={(event)=> {}}
+            />
+            {showZoomImg && <div
+            className = "zoom-img"
+            style = {{
+                left: `${cursorPosition.x - 120}px`,
+                top: `${cursorPosition.y - 120}px`,
+                backgroundImage: `url(${mainImg})`,
+                backgroundPosition: `${zoomImgPosition.x}% ${zoomImgPosition.y}%`,
+            }}
+            ></div>
+            }
         </div>
     </div>
   )
