@@ -36,23 +36,23 @@ export const SubCart:FC<Props> = ({showSubcart, setShowSubcart}) => {
             <div className='subcart-items'>
                 {
                     cartItems.map((item, i)=> {
-                        const{id, img, name, newPrice, amount, total, chosenSize} = item;
+                        const{id, smallImgs, name, newPrice, amount, chosenSize, chosenColor} = item;
                         return(
                             <div key={i} className='subcart-item flx'>
                                 <Link className='link' to={"/product/"+ id}>
-                                    <img src={img} />
+                                    <img src={smallImgs[0].img} />
                                 </Link>
                                 <div className='details'>
                                     <Link className='link' to={"/product/"+ id}><h5>{name}</h5></Link>
                                     <p className='item-price'>{amount} {chosenSize} <span> x </span>{newPrice} $</p>
                                     <div className='control'>
-                                        <button onClick={()=>dispatch(increaseAmount({id, size: chosenSize}))}>+</button>
+                                        <button onClick={()=>dispatch(increaseAmount({id, size: chosenSize, color: chosenColor}))}>+</button>
                                         <input type="number" min={0} value={amount} />
-                                        <button onClick={()=>dispatch(decreaseAmount({id, size: chosenSize}))}>-</button>
+                                        <button onClick={()=>dispatch(decreaseAmount({id, size: chosenSize, color: chosenColor}))}>-</button>
                                     </div>
                                 </div>
                                 <div className='remove'>
-                                    <button onClick={()=>dispatch(removeFromCart({id, size: chosenSize}))}><IoCloseSharp /></button>
+                                    <button onClick={()=>dispatch(removeFromCart({id, size: chosenSize, color: chosenColor}))}><IoCloseSharp /></button>
                                 </div>
                             </div>
                         )

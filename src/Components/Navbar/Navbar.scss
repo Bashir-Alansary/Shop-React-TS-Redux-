@@ -55,7 +55,7 @@
                     }
                     
                     span.num {
-                        $val: 15px; //var
+                        $val: 16px; //var
                         position: absolute;
                         top: -2px;
                         min-width: $val;
@@ -67,7 +67,7 @@
                         border-radius: 50%;
                         font-size: 10px;
                         background: #f35f26;
-                        padding: 3px;
+                        padding: 2px;
                         color: #fff;
                     }
                 }

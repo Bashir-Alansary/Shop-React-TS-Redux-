@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import products from "../../Assets/products";
-import { ProductType } from "../../Assets/types";
+import { ProductType, SmallImgType } from "../../Assets/types";
 
 interface Pro {
     id: number,
     name: string,
     category: string,
-    img: string,
+    smallImgs: SmallImgType[],
     newPrice: number,
     oldPrice: number,
-    imgs: string[],
+    bigImgs: string[],
     sizes: string[],
     color: string,
     type: string,
@@ -22,6 +22,7 @@ interface CartItems extends Pro {
     amount: number,
     total: number,
     chosenSize: string,
+    chosenColor: SmallImgType,
 }
 
 interface CartState {
@@ -44,12 +45,16 @@ const initialState: ShopState = {
     }
 }
 
-interface IDSize {
+interface IDColor {
     id: number,
+    color: SmallImgType,
+}
+
+interface IDSizeColor extends IDColor {
     size: string,
 }
 
-interface AddAmount extends IDSize {
+interface AddAmount extends IDSizeColor {
     amount: number,
 }
 
@@ -58,41 +63,60 @@ export const shopSlice = createSlice({
     name: 'shop',
     initialState,
     reducers: {
-        addToCart: (state, action) => {
-            const theItem = state.cart.cartItems.find(item => item.id === action.payload && item.chosenSize === item.sizes[0]);
+        addToCart: (state, action:PayloadAction<IDColor>) => {
+            const {id, color} = action.payload;
+            console.log(color);
+            
+            const theItem =
+            state.cart.cartItems.find(item =>
+                item.id === id
+                && item.chosenSize === item.sizes[0]
+                && item.chosenColor.id === color.id
+            );
+
             if (theItem !== undefined) {
                 state.cart.cartItems.map(item => {
-                    if (item.id === action.payload) {
+                    if (item.id === id) {
                         item.amount += 1;
                     }
                 })
             } else {
-                const product:any = products.find((item:any) => item.id === action.payload);
-                const finalItem = {...product, amount: 1, total: product.price, chosenSize: product.sizes[0]}
+                const product:any = products.find((item:any) => item.id === id);
+                const finalItem = {
+                    ...product, amount: 1,
+                    total: product.price,
+                    chosenSize: product.sizes[0],
+                    chosenColor: color
+                }
                 
                 state.cart.cartItems = [...state.cart.cartItems, finalItem];
             }
         },
 
-        removeFromCart: (state, action:PayloadAction<IDSize>) => {
-            const {id, size} = action.payload;
-            state.cart.cartItems = state.cart.cartItems.filter((item:any) => (item.id !== id) || (item.id === id) && item.chosenSize !== size);
+        removeFromCart: (state, action:PayloadAction<IDSizeColor>) => {
+            const {id, size, color} = action.payload;
+            state.cart.cartItems = 
+            state.cart.cartItems.filter((item:any) => 
+                (item.id !== id)
+                || (item.id === id && item.chosenColor.id !== color.id)
+                || (item.id === id && item.chosenSize !== size)
+            );
             
         },
 
-        increaseAmount: (state, action:PayloadAction<IDSize>) => {
-            const {id, size} = action.payload;
+        increaseAmount: (state, action:PayloadAction<IDSizeColor>) => {
+            const {id, size, color} = action.payload;
             state.cart.cartItems.map(item => {
-                if (item.id === id && item.chosenSize === size) {
+                if (item.id === id && item.chosenSize === size && item.chosenColor.id === color.id) {
                     item.amount += 1;
                 }
             })
         },
 
-        decreaseAmount: (state, action:PayloadAction<IDSize>) => {
-            const {id, size} = action.payload;
+        decreaseAmount: (state, action:PayloadAction<IDSizeColor>) => {
+            const {id, size, color} = action.payload;
             state.cart.cartItems.map((item, index) => {
-                if (item.id === id && item.chosenSize === size) {
+                if (item.id === id && item.chosenSize === size && item.chosenColor.id === color.id) {
                     if (item.amount > 1) {
                         item.amount -= 1;
                     } else {
@@ -119,18 +143,31 @@ export const shopSlice = createSlice({
         },
 
         addAmountToItem: (state, action:PayloadAction<AddAmount>) => {
-            const {id, size, amount} = action.payload;
-            const theItem = state.cart.cartItems.find(item => item.id === id && item.chosenSize === size)
+            const {id, size, color, amount} = action.payload;
+            const theItem =
+                state.cart.cartItems.find(item =>
+                    item.id === id
+                    && item.chosenSize === size
+                    && item.chosenColor.id === color.id
+                );
+                
             if (theItem === undefined) {
                 const product:any = products.find((item:any) => item.id === id);
-                const finalItem = {...product, amount, total: product.price, chosenSize: size}
+                const finalItem = {
+                    ...product,
+                    amount,
+                    total: product.price,
+                    chosenSize: size,
+                    chosenColor: color
+                };
                 
                 state.cart.cartItems = [...state.cart.cartItems, finalItem];
             } else {
                 state.cart.cartItems.map(item => {
-                    if (item.id === id && item.chosenSize === size) {
+                    if (item.id === id && item.chosenSize === size && item.chosenColor.id === color.id) {
                         item.amount = item.amount + amount;
                         item.chosenSize = size;
+                        item.chosenColor = color;
                     }
                 })
             }

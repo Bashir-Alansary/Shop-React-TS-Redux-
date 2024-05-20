@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import products from '../Assets/products';
 import { ProductImgs } from './ProductImgs/ProductImgs';
 import { ProductDetails } from './ProductDetails/ProductDetails';
+import "./Product.scss"
 
 export const Product = () => {
     const {id}= useParams();

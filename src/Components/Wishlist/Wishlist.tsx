@@ -26,10 +26,10 @@ export const Wishlist = () => {
                 <tbody>
                     {
                         wishItems.map(item => {
-                            const {id, img, name, newPrice} = item;
+                            const {id, smallImgs, name, newPrice} = item;
                             return(
                                 <tr key={id}>
-                                    <td><img src={img} /></td>
+                                    <td><img src={smallImgs[0].img} /></td>
                                     <td>{name}</td>
                                     <td>{newPrice}</td>
                                     <td className='special'>

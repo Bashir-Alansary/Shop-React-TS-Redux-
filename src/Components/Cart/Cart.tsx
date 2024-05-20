@@ -11,6 +11,8 @@ import {
 export const Cart = () => {
     const cart = useSelector((state:RootState) => state.shop.cart);
     const {cartItems, amount, total} = cart;
+    console.log(cartItems);
+    
     
     const dispatch = useDispatch();
     
@@ -31,23 +33,23 @@ export const Cart = () => {
                 <tbody>
                     {
                         cartItems.map((item, i) => {
-                            const {id, img, name, newPrice, amount, total, chosenSize} = item;
+                            const {id, name, newPrice, amount, total, chosenSize, chosenColor} = item;
                             return(
                                 <tr key={i}>
-                                    <td><img src={img} /></td>
+                                    <td><img src={chosenColor.img} /></td>
                                     <td>
                                         <h3>{name}</h3>
                                         <span>{chosenSize}</span>
                                     </td>
                                     <td>{newPrice}</td>
                                     <td className='amount'>
-                                        <button onClick={() => dispatch(increaseAmount({id, size: chosenSize}))}>+</button> 
+                                        <button onClick={() => dispatch(increaseAmount({id, size: chosenSize, color: chosenColor}))}>+</button> 
                                         <input type='number' value = {amount} onChange={()=>console.log("input")}/>
-                                        <button onClick={() => dispatch(decreaseAmount({id, size: chosenSize}))}>-</button> 
+                                        <button onClick={() => dispatch(decreaseAmount({id, size: chosenSize, color: chosenColor}))}>-</button> 
                                     </td>
                                     <td>{total}</td>
                                     <td>
-                                    <button onClick={() => dispatch(removeFromCart({id, size: chosenSize}))}>X</button>
+                                    <button onClick={() => dispatch(removeFromCart({id, size: chosenSize, color: chosenColor}))}>X</button>
                                     </td>
                                 </tr>
                             )

@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { IoIosArrowRoundForward } from "react-icons/io";
+import waveImg from "../Assets/images/wave.png"
 import "./Hero.scss"
 import Slide from './Slide';
 
@@ -15,7 +16,7 @@ export const Hero:FC = () => {
                    <button><span>Shop Now</span><IoIosArrowRoundForward /></button>
                 </div>
             </div>
-            <img className='wave-img' src='images/wave.png' />
+            <img className='wave bottom' src={waveImg} />
         </div>
     </div>
   )

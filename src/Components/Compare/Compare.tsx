@@ -18,12 +18,12 @@ export const Compare = () => {
             <div className='content'>
             {
               compareItems.map(item => {
-                  const {id, img, name, newPrice} = item;
+                  const {id, smallImgs, name, newPrice} = item;
                   return (
                     <div className='box'>
                       <div className='imgbx'>
                       <Link className='imgbx link' to={"/product/"+ id}  onClick={()=>window.scroll(0,0)}>
-                        <img src={img} />
+                        <img src={smallImgs[0].img} />
                       </Link>
                       </div>
                       <div className='text'>

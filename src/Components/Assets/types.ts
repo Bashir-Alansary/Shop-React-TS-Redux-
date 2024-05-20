@@ -1,11 +1,18 @@
+interface SmallImg {
+    id: number,
+    name: string,
+    img: string,
+    color: string,
+}
+
 interface Product {
     id: number,
     name: string,
     category: string,
-    img: string,
+    smallImgs: SmallImg[],
     newPrice: string,
     oldPrice: string,
-    imgs: string[],
+    bigImgs: string[],
     sizes: string[],
     color: string,
     type: string,
@@ -24,5 +31,6 @@ export const isItemExist = (id: number, list: Product[]): boolean => {
   }
 
 export type { Product as ProductType }
+export type { SmallImg as SmallImgType }
 
 

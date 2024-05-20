@@ -7,7 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
 import {paymentMethods} from "./ProductDetailsData"
-import { ProductType, isItemExist } from '../../Assets/types';
+import { ProductType, SmallImgType, isItemExist } from '../../Assets/types';
 
 import "./ProductDetails.css"
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,13 +23,14 @@ interface Props {
 
 export const ProductDetails:FC<Props> = ({product}) => {
   
-  const {id, name, category, desc, newPrice, oldPrice, sizes} = product;
+  const {id, name, smallImgs, category, desc, newPrice, oldPrice, sizes} = product;
   const {wishItems} = useSelector((state:RootState) => state.wish)
   const {compareItems} = useSelector((state:RootState) => state.compare)
   const dispatch = useDispatch();
 
   const [amount, setAmount] = useState<number>(1);
   const [size, setSize] = useState<string>(product.sizes[0]);
+  const [color, setColor] = useState<SmallImgType>(smallImgs[0]);
 
   const[wishLoad, setWishLoad] = useState<boolean>(false);
   const[compareLoad, setCompareLoad] = useState<boolean>(false);
@@ -54,7 +55,7 @@ export const ProductDetails:FC<Props> = ({product}) => {
   const handleAddAmount = (id:number): void => {
     setAddLoad(true);
     setTimeout(function() {
-      dispatch(addAmountToItem({id, size, amount}));
+      dispatch(addAmountToItem({id, size, color, amount}));
       setAmount(1);
       setAddLoad(false);
     }, 1000);
@@ -64,38 +65,11 @@ export const ProductDetails:FC<Props> = ({product}) => {
     setSize(val);
   }
 
-  const handleChange = (e:any): void => {
-    if (e.target.value >= 0) {
-      setAmount(1);
-    } else {
-      setAmount(e.target.value);
-    }
-  }
-
   const decreaseVal = (): void => {
     if (amount > 1) {
       setAmount(amount - 1);
     }
   }
-
-  // const decreaseAddedAmount = () => {
-  //   if (addedAmount > 1) {
-  //     setAddedAmount(addedAmount - 1)
-  //   } else {
-  //     setAddedAmount(1);
-  //   }
-  // }
-
-  // const checkAvailableSize = (index, item) => {
-  //   if (index === 0 || index === 1) {
-  //     setAddedMsg({text: "10 in stock", class: "msg done", availablity: true});
-  //     setDisabledBtn(false);
-  //   } else {
-  //     setAddedMsg({text: "sold Out", class: "msg warning", availablity: true});
-  //     setDisabledBtn(true);
-  //   }
-  //   setSize(item);
-  // }
 
 
   const shareOnFacebook = (): void =>{
@@ -124,6 +98,22 @@ export const ProductDetails:FC<Props> = ({product}) => {
       <div className='info'>
         <p>{desc}</p>
       </div>
+      <ul className='item-colors'>
+        {
+          smallImgs.map(item => {
+            const {id, color} = item;
+            return (
+              <li key={id} className='item-color'>
+                <button
+                className='color-btn'
+                style={{background: color, outline: '1px solid' + color}}
+                 onClick={()=>setColor(item)}
+                ></button>
+              </li>
+            )
+          })
+        }
+      </ul>
       
       <ul className='sizes'>
         {

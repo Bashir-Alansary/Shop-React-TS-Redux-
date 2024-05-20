@@ -1,0 +1,147 @@
+.footer {
+    position: relative;
+    padding-top: 120px;
+}
+
+.footer .content {
+    background: #dedede;
+}
+
+.footer .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+
+.footer .info > div {
+    width: 28%;
+}
+
+.footer .info ul:not(.contact-ways) {
+    display: flex;
+}
+
+.footer .info ul:not(.pages) li {
+    margin-right: 10px;
+}
+
+.footer .desc .media img {
+    width: 40px;
+}
+
+.footer .info .footer-logo {
+    text-align: center;
+}
+
+.footer .footer-logo img {
+    width: 140px;
+    margin-bottom: 10px;
+}
+
+.footer .footer-logo ul.pages {
+    justify-content: center;
+}
+
+.footer .footer-logo .link {
+    color: rgb(107, 107, 107);
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+.footer .footer-logo .link:hover {
+    color: rebeccapurple;
+}
+
+.footer .footer-logo .slash {
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+.footer .details .payment-ways img {
+    width: 43px;
+}
+
+.footer .details .contact-ways li {
+    display: flex;
+    align-items: center;
+}
+
+.footer .details .contact-ways li p {
+    margin: 0;
+    margin-left: 15px;
+}
+
+.footer p {
+    font-size: 14px;
+}
+
+.footer hr {
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #fff;
+    opacity: 1;
+}
+
+.footer .rights {
+    background: #dedede;
+}
+
+.footer .rights .container {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .rights .copyright,
+.footer .rights .terms {
+    width: fit-content;
+}
+
+.footer .rights p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer .rights .terms a {
+    color: #222;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer .rights .terms a:hover {
+    text-decoration: underline;
+}
+
+.footer .rights .terms .slash {
+    margin: 0 8px;
+    font-size: 14px;
+}
+
+.footer .blur-color {
+    top: 0;
+    background: linear-gradient(180deg, transparent, #dedede);
+}
+
+
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .footer .info {
+        flex-direction: column;
+    }
+
+    .footer .info > div {
+        width: 100%;
+    }
+
+    .footer .desc {
+        order: 3;
+    }
+
+    .footer .info ul:not(.contact-ways) {
+        justify-content: center;
+    }
+
+    
+}

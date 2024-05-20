@@ -13,14 +13,14 @@ interface Props {
 
 export const ProductImgs:FC<Props> = ({product}) => {
 
-    const {imgs} = product;
-    const [mainImg, setMainImg] = useState<string | undefined>(imgs[0]);
+    const {bigImgs} = product;
+    const [mainImg, setMainImg] = useState<string | undefined>(bigImgs[0]);
     const [showZoomImg, setShowZoomImg] = useState<boolean>(false);
     const [zoomImgPosition, setZoomImgPosition] = useState<Position>({x: 0, y: 0});
     const [cursorPosition, setCursorPosition] = useState<Position>({x: 0, y: 0});
 
     const showMainImg = (index:number) : void => {
-        const newMainImg = imgs.find((img:string, i:number) => i === index);
+        const newMainImg = bigImgs.find((img:string, i:number) => i === index);
         setMainImg(newMainImg);
     }
 
@@ -34,14 +34,14 @@ export const ProductImgs:FC<Props> = ({product}) => {
 
 
     useEffect(() => {
-        setMainImg(imgs[0]);
+        setMainImg(bigImgs[0]);
     }, [product]);
 
   return (
     <div className='product-imgs flx'>
         <ul className='imgs-btns'>
             {
-                imgs.map((item, index) => {
+                bigImgs.map((item, index) => {
                     return(
                         <li className='img-btn'>
                             <button onClick={()=> showMainImg(index)}>
