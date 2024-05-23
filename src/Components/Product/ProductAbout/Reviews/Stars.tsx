@@ -1,20 +1,27 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { IoMdStar} from "react-icons/io";
-import { useShopContext } from '../../../../Context/ShopContext';
 
-export default function ReviewInputs() {
-    const{clickRate, setClickRate, starColor, setStarColor} = useShopContext();
-    const[hoverRate, setHoverRate] = useState(null);
+interface Props {
+    clickRate: number,
+    starColor: boolean,
+    setClickRate: React.Dispatch<React.SetStateAction<number>>,
+    setStarColor: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+const Stars:FC<Props> = ({clickRate, setClickRate, starColor, setStarColor }) => {
+
+    const[hoverRate, setHoverRate] = useState<number>(0);
+
   return (
-    <div className='review-inputs'>
+    <div className='stars'>
         {
             [...Array(5)].map((star, index) => {
-                const val = index + 1;
+                const val:number = index + 1;
                 return(
                     <button
                     key={Math.random()}
                     className='star'
-                    onClick={(e)=>{e.preventDefault(); setClickRate(val);}}
+                    onClick={()=> setClickRate(val)}
                     onMouseEnter={() => {setHoverRate(val); setStarColor(true)}}
                     onMouseLeave={() => setHoverRate(clickRate)}
                     >
@@ -29,3 +36,5 @@ export default function ReviewInputs() {
     </div>
   )
 }
+
+export default Stars;

@@ -91,7 +91,7 @@ export const Item:FC<Props> = ({id, name, smallImgs, newPrice, oldPrice, desc, i
                     return (
                       <li key={id} className='item-color'>
                         <button
-                        className='color-btn'
+                        className={shownImg.id === id ? 'color-btn active' : 'color-btn'}
                         style={{background: color, outline: '1px solid' + color}}
                         onClick={()=>setShownImg(item)}
                         ></button>
@@ -106,8 +106,8 @@ export const Item:FC<Props> = ({id, name, smallImgs, newPrice, oldPrice, desc, i
                 <span className='icon-name'>
                   {isItemExist(id, compareItems)? "it is in compare" : "Add to compare"}
                 </span>
-                {isItemExist(id, compareItems)? <Link to="/compare" className="link icon-btn"><MdDoneOutline/> </Link>
-                :<button onClick={()=>handleAddToCompare(id)} className='icon-btn'>
+                {isItemExist(id, compareItems)? <Link to="/compare" className="link icon-btn flx-c"><MdDoneOutline/> </Link>
+                :<button onClick={()=>handleAddToCompare(id)} className='icon-btn flx-c'>
                   {compareLoad? <AiOutlineReload className='load'/> : <DiGitCompare />}
                 </button>}
               </div>
@@ -115,8 +115,8 @@ export const Item:FC<Props> = ({id, name, smallImgs, newPrice, oldPrice, desc, i
                 <span className='icon-name'>
                   {isItemExist(id, wishItems)? "it is in wishlist" : "Add to wishlist"}
                 </span>
-                {isItemExist(id, wishItems)? <Link to="/wishlist" className="link icon-btn"><FaHeart /> </Link>
-                :<button onClick={()=>handleAddToWish(id)} className='icon-btn'>
+                {isItemExist(id, wishItems)? <Link to="/wishlist" className="link icon-btn flx-c"><FaHeart /> </Link>
+                :<button onClick={()=>handleAddToWish(id)} className='icon-btn flx-c'>
                   {wishLoad? <AiOutlineReload className='load'/> : <FiHeart />}
                 </button>}
               </div>

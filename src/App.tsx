@@ -11,6 +11,7 @@ import { Home } from './Components/Home/Home';
 import { Wishlist } from './Components/Wishlist/Wishlist';
 import { Product } from './Components/Product/Product';
 import { Compare } from './Components/Compare/Compare';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
               <Route path='/product/:id' element={<Product />} />
             </Routes>
           </div>
+          <Footer />
         </BrowserRouter>
     </div>
   );

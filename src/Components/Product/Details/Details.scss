@@ -1,0 +1,175 @@
+.details {
+    width: 48%;
+    h1 {
+        margin-bottom: 0;
+    }
+    .category {
+        text-transform: uppercase;
+    }
+
+    .stars {
+        display: flex;
+        margin-top: 20px;
+        span {
+            &:not(.num) {
+                display: flex;
+                color: #ffcd00;
+                font-size: 19px;
+            }
+        }
+
+        .num {
+            font-size: 14px;
+        }
+    }
+
+    .price {
+        span {
+            font-size: 20px;
+            &.old-price {
+                color: #0fb3c959;
+                margin-left: 40px;
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    .info {
+        margin: 20px 0;
+        color: #999;
+    }
+
+    .sizes {
+        display: flex;
+        margin-bottom: 20px;
+        .size {
+            margin-right: 10px;
+            width: 55px;
+            height: 45px;
+            cursor: pointer;
+            background: #f9f9f9;
+            border: 1px solid #ededed;
+            transition: 0.5s;
+            &.active{
+                background: #d9f0f3;
+              }
+        }
+    }
+
+    .add-to-cart {
+        margin-bottom: 20px;
+        .inputs-content {
+            display: flex;
+            margin-bottom: 10px;
+            .amount {
+                display: flex;
+                margin-right: 20px;
+                &.disabled {
+                    display: none;
+                }
+
+                .num {
+                    input {
+                        width: 47px;
+                        height: 42px;
+                        padding: 3px;
+                        text-align: center;
+                        border: 1px solid #e2e2e2;
+                        color: rebeccapurple;
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .control {
+                    width: 25px;
+                    height: 42px;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 21px;
+                        border: none;
+                        cursor: pointer;
+                        outline: none;
+                        &:first-of-type {
+                            background: #e9e7e7;
+                        }
+                        &:last-of-type {
+                            background: #e1e1e1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .add {
+            width: 235px;
+            height: 42px;
+            border: none;
+            cursor: pointer;
+            background: #b24af7;
+            color: #fff;
+            &.disabled {
+                cursor: not-allowed;
+                background: #d3a2f3 !important;
+            }
+        }
+    }
+
+    .interact {
+        display: flex;
+        .box {
+            width: fit-content;
+            margin-right: 30px;
+            .icon-btn {
+                background: none;
+                border: none;
+                padding: 0;
+                span {
+                    font-size: 14px;
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+
+    .payment-methods {
+        display: flex;
+        .method {
+            margin-right: 15px;
+            img {
+                width: 45px;
+            }
+        }
+    }
+
+    .link {
+        color: #000;
+    }
+
+    .item-colors {
+        margin-bottom: 20px;
+        .color-btn {
+            &.active {
+                border: 2px solid transparent !important;
+            }
+        }
+    }
+}
+
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .product-details {
+        width: 100%;
+    }
+
+    .product-details .interact .box {
+        margin-right: 29px;
+    }
+}

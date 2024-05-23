@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import products from "../../Assets/products";
-import { ProductType, SmallImgType } from "../../Assets/types";
+import { InfoType, ProductType, SmallImgType } from "../../Assets/types";
 
 interface Pro {
     id: number,
@@ -14,7 +14,7 @@ interface Pro {
     color: string,
     type: string,
     tags: string[],
-    info: {style: string, composition: string, weight: string, dimensions: string,}[],
+    info:InfoType,
     desc: string,
 } 
 

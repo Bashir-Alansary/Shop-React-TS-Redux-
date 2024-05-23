@@ -1,18 +1,19 @@
 import React, { FC, SetStateAction } from 'react'
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-import emptyCart from "../Assets/images/empty-cart.webp"
+import emptySubCartImg from "../Assets/images/empty-cart.webp"
 import { RootState } from '../Redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { decreaseAmount, increaseAmount, removeFromCart } from '../Redux/Slices/shopSlice';
-import "./SubCart.scss"
+import "./Subcart.scss"
+import BlankPage from '../BlankPage/BlankPage';
 
 interface Props {
     showSubcart: boolean,
     setShowSubcart: React.Dispatch<SetStateAction<boolean>>,
 }
 
-export const SubCart:FC<Props> = ({showSubcart, setShowSubcart}) => {
+const Subcart:FC<Props> = ({showSubcart, setShowSubcart}) => {
 
     const cart = useSelector((state:RootState) => state.shop.cart);
     const {cartItems, amount, total} = cart;
@@ -68,10 +69,10 @@ export const SubCart:FC<Props> = ({showSubcart, setShowSubcart}) => {
                 <button>check out</button>
             </div>
         </div>
-        : <div className='blank-content'>
-            {/* <BlankPage name='cart' img={emptyCart}/> */}
-        </div>
+        : <BlankPage name='cart' img={emptySubCartImg} />
         }
     </div>
   )
 }
+
+export default Subcart;

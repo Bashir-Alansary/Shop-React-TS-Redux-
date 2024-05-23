@@ -2,8 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import products from '../Assets/products';
 import { ProductImgs } from './ProductImgs/ProductImgs';
-import { ProductDetails } from './ProductDetails/ProductDetails';
+import ProductAbout from './ProductAbout/ProductAbout';
+import Related from './Related/Related';
 import "./Product.scss"
+import Details from './Details/Details';
 
 export const Product = () => {
     const {id}= useParams();
@@ -13,8 +15,10 @@ export const Product = () => {
         <div className='container'>
         <div className='content flx'>
           <ProductImgs product = {product} />
-          <ProductDetails product = {product} />
+          <Details product = {product} />
         </div>
+        <ProductAbout product = {product} />
+        <Related id={product.id} category={product.category}/>
         </div>
     </div>
   )

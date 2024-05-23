@@ -5,6 +5,13 @@ interface SmallImg {
     color: string,
 }
 
+interface Info {
+    style: string, 
+    composition: string, 
+    weight: string, 
+    dimensions: string,
+}
+
 interface Product {
     id: number,
     name: string,
@@ -17,7 +24,7 @@ interface Product {
     color: string,
     type: string,
     tags: string[],
-    info: {style: string, composition: string, weight: string, dimensions: string,}[],
+    info: Info,
     desc: string,
 }
 
@@ -30,7 +37,5 @@ export const isItemExist = (id: number, list: Product[]): boolean => {
     }
   }
 
-export type { Product as ProductType }
-export type { SmallImg as SmallImgType }
-
+export type { Product as ProductType, SmallImg as SmallImgType, Info as InfoType}
 

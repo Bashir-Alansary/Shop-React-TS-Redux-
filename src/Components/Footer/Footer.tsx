@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { pages, media, paymentWays, contactWays } from '../Assets/footerData'
+import { pages, media, paymentWays, contactWays } from '../Assets/footer'
 import logo from "../Assets/images/logo.png"
-import "./Footer.css"
+import "./Footer.scss"
 
-export default function Footer() {
+const Footer = () => {
   return (
     <div className='footer'>
             <div className='content'>
                 <div className='container'>
-                    <div className='info'>
+                    <div className='info flx'>
                         <div className='desc'>
                             <p className='hide-mobile'>
                                 At vero eos et accusamus et iusto odio dignissimos ducimus,
@@ -37,7 +37,7 @@ export default function Footer() {
                                     pages.map((item, i)=>{
                                         const{id, name, link} = item;
                                         return(
-                                            <li key={id} className='page'>
+                                            <li key={id} className='page flx-c'>
                                                 {i < pages.length - 1 ?
                                                 <><Link className='link' to={link} >{name}</Link><span className='slash'>/</span></>
                                                 : <Link className='link' to={link} >{name}</Link>
@@ -95,7 +95,9 @@ export default function Footer() {
                 </div>
             </div>
         </div>
-        <div className='blur-color'></div>
+        <div className='gradient'></div>
     </div>
   )
 }
+
+export default Footer;

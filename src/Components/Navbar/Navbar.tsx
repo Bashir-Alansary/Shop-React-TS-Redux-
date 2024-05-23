@@ -10,7 +10,7 @@ import cart from "../Assets/images/cart.png"
 import wishlist from "../Assets/images/wishlist.png"
 
 import "./Navbar.scss"
-import { SubCart } from '../SubCart/SubCart';
+import Subcart from '../Subcart/Subcart';
 
 export const Navbar:FC = () => {
     const {amount} = useSelector((state:RootState) => state.shop.cart);
@@ -39,7 +39,7 @@ export const Navbar:FC = () => {
                     <span className='num'>{amount}</span>
                     <img src={cart} />
                 </button>
-                <SubCart showSubcart = {showSubcart} setShowSubcart = {setShowSubcart} />
+                <Subcart showSubcart = {showSubcart} setShowSubcart = {setShowSubcart} />
             </div>
             </div>
         </div>

@@ -8,20 +8,18 @@ import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
 import {paymentMethods} from "./ProductDetailsData"
 import { ProductType, SmallImgType, isItemExist } from '../../Assets/types';
-
-import "./ProductDetails.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWish } from '../../Redux/Slices/wishSlice';
 import { RootState } from '../../Redux/store';
 import { addToCompare } from '../../Redux/Slices/compareSlice';
 import { addAmountToItem } from '../../Redux/Slices/shopSlice';
-import { Value } from 'sass';
+import "./Details.scss"
 
 interface Props {
   product: ProductType,
 }
 
-export const ProductDetails:FC<Props> = ({product}) => {
+const Details:FC<Props> = ({product}) => {
   
   const {id, name, smallImgs, category, desc, newPrice, oldPrice, sizes} = product;
   const {wishItems} = useSelector((state:RootState) => state.wish)
@@ -79,7 +77,7 @@ export const ProductDetails:FC<Props> = ({product}) => {
   }
 
   return (
-    <div className='product-details'>
+    <div className='details'>
       <div className='stars'>
         <span><IoMdStar /></span>
         <span><IoMdStar /></span>
@@ -101,12 +99,12 @@ export const ProductDetails:FC<Props> = ({product}) => {
       <ul className='item-colors'>
         {
           smallImgs.map(item => {
-            const {id, color} = item;
+            const {id} = item;
             return (
               <li key={id} className='item-color'>
                 <button
-                className='color-btn'
-                style={{background: color, outline: '1px solid' + color}}
+                className={color.id === item.id ? 'color-btn active' : 'color-btn'}
+                style={{background: item.color, outline: '1px solid' + item.color}}
                  onClick={()=>setColor(item)}
                 ></button>
               </li>
@@ -196,3 +194,5 @@ export const ProductDetails:FC<Props> = ({product}) => {
     </div>
   )
 }
+
+export default Details;
