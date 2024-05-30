@@ -150,7 +150,7 @@
 
 /***********************/
 .item,
-.item-list-view {
+.list-view {
     .item-icons {
         .icon-btn {
             $val: 35px;
@@ -176,9 +176,9 @@
     
 }
 
-
+/* item && list && new arrivel && search views */
 .item,
-.item-list-view,
+.list-view,
 .new-arrivals-view,
 .search-view {
     .price span {
@@ -194,8 +194,93 @@
     }
 }
 
+/* list && new arrivel && search views */
+.list-view,
+.new-arrivals-view,
+.search-view {
+    .item-colors{display: none;}
+}
+
+/* new arrivel && search views */
+.new-arrivals-view,
+.search-view {
+    .content {display: flex;}
+    .imgbx img {width: 100%;}
+    .interact, .main-btn {display: none;}
+}
+
+/* item in list view */
+.list-view {
+    margin-bottom: 30px;
+    .content {
+        display: flex;
+        .imgbx {
+            width: 30%;
+            margin-right: 40px;
+            img {width: 100%;}
+        }
+        .item-details {
+            width: 55%;
+            .description {margin: 20px 0;}
+            .interact {
+                display: flex;
+                .compare-btn {margin-right: 20px;}
+                .icon-name {display: none;}
+            }
+
+            .main-btn {
+                margin-top: 30px;
+                .special-btn {
+                    width: 250px;
+                    padding: 8px;
+                }
+            }
+
+            .item-icons:hover .icon-btn {box-shadow: #3f3f3f70 0 2px 8px; }
+        }
+    }
+}
+
+/* new arrival view */
+.new-arrivals-view {
+    margin-bottom: 30px;
+    .imgbx {
+        width: 100px;
+        margin-right: 10px;
+    }
+
+    .text {
+        h3 {
+            font-size: 16px;
+            color: #000;
+        }
+    }
+}
+
+/* search view */
+.search-view {
+    .content {
+        display: flex;
+        .imgbx {
+            width: 50px;
+            margin-right: 20px;
+        }
+        
+        h3 {
+        font-size: 16px;
+        color: #000;
+        margin-bottom: 0;
+        }
+
+        .price span {
+        font-size: 12px;
+        }
+    }
+}
+
+
 /* description */
-.description:not(.item-list-view .description) {display: none;}
+.description:not(.list-view .description) {display: none;}
 
 /********/
 .item-colors {

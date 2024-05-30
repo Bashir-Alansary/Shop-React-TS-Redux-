@@ -1,11 +1,11 @@
-import visa from "../../Assets/images/visa.png"
-import mastercard from "../../Assets/images/mastercard.png"
-import paypal from "../../Assets/images/paypal.png"
-import amazon from "../../Assets/images/amazon.png"
-import ebay from "../../Assets/images/ebay.png"
-import discover from "../../Assets/images/discover.png"
+import visa from "./images/visa.png"
+import mastercard from "./images/mastercard.png"
+import paypal from "./images/paypal.png"
+import amazon from "./images/amazon.png"
+import ebay from "./images/ebay.png"
+import discover from "./images/discover.png"
 
-export const paymentMethods = [
+const paymentMethods = [
     {
         id:1,
         name: "visa",
@@ -37,3 +37,5 @@ export const paymentMethods = [
         img: discover,
     }
 ]
+
+export default paymentMethods;

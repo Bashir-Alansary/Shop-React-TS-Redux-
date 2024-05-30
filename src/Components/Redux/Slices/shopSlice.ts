@@ -1,24 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import products from "../../Assets/products";
-import { InfoType, ProductType, SmallImgType } from "../../Assets/types";
+import { ProductType, SmallImgType } from "../../Assets/types";
 
-interface Pro {
-    id: number,
-    name: string,
-    category: string,
-    smallImgs: SmallImgType[],
-    newPrice: number,
-    oldPrice: number,
-    bigImgs: string[],
-    sizes: string[],
-    color: string,
-    type: string,
-    tags: string[],
-    info:InfoType,
-    desc: string,
-} 
-
-interface CartItems extends Pro {
+interface CartItems extends ProductType {
     amount: number,
     total: number,
     chosenSize: string,

@@ -24,6 +24,9 @@ export const Navbar:FC = () => {
             </div>
             <ul className='links flx'>
                 <li><NavLink className='link' to="/" >home</NavLink></li>
+                <li><NavLink className='link' to="/men">Men</NavLink></li>
+                <li><NavLink className='link' to="/women">Wemon</NavLink></li>
+                <li><NavLink className='link' to="/kids">Kids</NavLink></li>
                 <li><NavLink className='link' to="/shop">shop</NavLink></li>
                 <li><NavLink className='link' to="/cart">cart</NavLink></li>
             </ul>

@@ -6,7 +6,7 @@ import { FiHeart, FiShare2 } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
-import {paymentMethods} from "./ProductDetailsData"
+import paymentMethods from '../../Assets/details';
 import { ProductType, SmallImgType, isItemExist } from '../../Assets/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWish } from '../../Redux/Slices/wishSlice';
@@ -131,7 +131,7 @@ const Details:FC<Props> = ({product}) => {
         <div className='inputs-content'>
           <div className='amount'>
             <div className='num'>
-              <input type="number" min={0} value={amount} onChange={(e:any) =>setAmount(parseInt(e.target.value))} />
+              <input type="number" min={0} value={amount} onChange={(e) =>setAmount(parseInt(e.target.value))} />
             </div>
             <div className='control'>
               <button onClick={()=> setAmount(amount + 1)}>+</button>

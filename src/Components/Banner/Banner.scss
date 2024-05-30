@@ -1,0 +1,41 @@
+   .banner {
+    background: linear-gradient(180deg,#f6f6f6, #fefce8);
+    .container {
+        .banner-content {
+            align-items: center;
+            height: 300px;
+            margin-bottom: 50px;
+            h1 {
+                font-size: 38px;
+                letter-spacing: 2px;
+                font-weight: 600;
+                color: #9C27B0;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+
+            span {color: #9C27B0;}
+
+            .banner-btn {
+                border: none;
+                background: #9C27B0;
+                color: #fff;
+                font-size: 17px;
+                padding: 10px 25px;
+            }
+
+            .imgbx {
+                height: 100%;
+                img {height: 100%;}
+            }
+        }
+    }
+  }
+  
+  

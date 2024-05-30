@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
+import { RiDeleteBin2Line } from "react-icons/ri";
 import emptyCartImg from "../Assets/images/empty-cart.webp"
+import cartBanner from "../Assets/images/cart_banner.png"
 import "./Cart.scss"
 import {
     decreaseAmount,
@@ -9,6 +11,8 @@ import {
     removeFromCart
 } from '../Redux/Slices/shopSlice';
 import BlankPage from '../BlankPage/BlankPage';
+import Banner from '../Banner/Banner';
+import { Link } from 'react-router-dom';
 
 export const Cart = () => {
     const cart = useSelector((state:RootState) => state.shop.cart);
@@ -20,6 +24,7 @@ export const Cart = () => {
     
   return (
     <div className='cart'>
+        <Banner title='Your cart' img={cartBanner} num={total} />
         <div className='container'>
             {amount !== 0 ?   
                 <div className='content'>
@@ -40,10 +45,23 @@ export const Cart = () => {
                                     const {id, name, newPrice, amount, total, chosenSize, chosenColor} = item;
                                     return(
                                         <tr key={i}>
-                                            <td><img src={chosenColor.img} /></td>
                                             <td>
-                                                <h3>{name}</h3>
-                                                <span>{chosenSize}</span>
+                                                <Link 
+                                                className="link"
+                                                to={'/product' + id}
+                                                >
+                                                <img src={chosenColor.img} />
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link 
+                                                className="link"
+                                                to={'/product' + id}
+                                                >
+                                                {name}
+                                                </Link>
+                                                <span className='size'><b>size:</b> {chosenSize}</span>
+                                                <span><b>color:</b> {chosenColor.name}</span>
                                             </td>
                                             <td>{newPrice}</td>
                                             <td className='amount'>
@@ -53,7 +71,12 @@ export const Cart = () => {
                                             </td>
                                             <td>{total}</td>
                                             <td>
-                                            <button onClick={() => dispatch(removeFromCart({id, size: chosenSize, color: chosenColor}))}>X</button>
+                                            <button
+                                            className='remove' 
+                                            onClick={() => dispatch(removeFromCart({id, size: chosenSize, color: chosenColor}))}
+                                            >
+                                                <RiDeleteBin2Line />
+                                            </button>
                                             </td>
                                         </tr>
                                     )
@@ -61,8 +84,18 @@ export const Cart = () => {
                             }
                         </tbody>
                     </table>
-                    <b>{amount}</b><br />
-                    <b>{total}</b>
+                    <div className='final-details flx'>
+                        <div className='promocode'>
+                        <input type="text" placeholder="promo code" />
+                        <button className='hide-mobile'>Apply</button>
+                        </div>
+                        <div className='total'>
+                        <b>Total: </b><span>{total}$</span>
+                        </div>
+                        <div className='update-cart'>
+                        <button>Update<span className='hide-mobile'> Cart</span></button>
+                        </div>
+                    </div>
                 </div>
                 :<BlankPage name='cart' img = {emptyCartImg} />
             }

@@ -2,9 +2,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../Redux/store'
 import { removeFromWish } from '../Redux/Slices/wishSlice';
+import { RiDeleteBin2Line } from "react-icons/ri";
 import emptyWishlistImg from "../Assets/images/empty-wishlist.png";
-import "./Wishlist.scss"
+import wishBanner from "../Assets/images/wishlist_banner.png"
 import BlankPage from '../BlankPage/BlankPage';
+import Banner from '../Banner/Banner';
+import { Link } from 'react-router-dom';
+import "./Wishlist.scss"
 
 export const Wishlist = () => {
 
@@ -13,6 +17,7 @@ export const Wishlist = () => {
     
   return (
     <div className='wishlist'>
+        <Banner title='Your wishlist' img={wishBanner} num={wishItems.length} />
         <div className='container'>
             {wishItems.length ?
                 <div className='content'>
@@ -32,14 +37,30 @@ export const Wishlist = () => {
                                     const {id, smallImgs, name, newPrice} = item;
                                     return(
                                         <tr key={id}>
-                                            <td><img src={smallImgs[0].img} /></td>
-                                            <td>{name}</td>
+                                            <td>
+                                                <Link 
+                                                className='link' 
+                                                to={'/product/' + id}
+                                                >
+                                                <img src={smallImgs[0].img} />
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link 
+                                                className='link' 
+                                                to={'/product/' + id}
+                                                >
+                                                {name}
+                                                </Link>
+                                            </td>
                                             <td>{newPrice}</td>
                                             <td className='special'>
                                                 <button className='special-btn'>option</button>
                                             </td>
                                             <td>
-                                            <button onClick={()=>dispatch(removeFromWish(id))}>X</button>
+                                            <button className='remove' onClick={()=>dispatch(removeFromWish(id))}>
+                                                <RiDeleteBin2Line />
+                                            </button>
                                             </td>
                                         </tr>
                                     )

@@ -88,10 +88,26 @@ table {
           }
       }
 
-      input {
-          width: 40px;
+      button {
+          $val: 35px;
+          width: $val;
+          height: $val;
+        &.remove {
+          font-size: 17px;
+          color: red;
+          background: none;
+        }
       }
 
+      &.amount {
+        button {
+          border-radius: 50%;
+          background: #fff;
+          border: 1px solid rgb(242, 235, 248);
+          padding: 3px;
+          color: rebeccapurple;
+        }
+      }
       
   }
 }
@@ -149,6 +165,7 @@ table {
   }
 }
 
+
 /* input number arrows */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -172,6 +189,11 @@ div.gradient {
 
 div.gradient:not(.footer .gradient) {
   bottom: 0;
+}
+
+/* hide on PC*/
+.hide-pc {
+  display: none;
 }
 
 /* animation keyframes */

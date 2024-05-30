@@ -1,0 +1,20 @@
+.banner {
+    .categories {
+        display: flex;
+        align-items: center;
+        h1 {margin-right: 10px;}
+        .other-categories {
+            display: flex;
+            li {
+                display: flex;
+                .slash {
+                    margin: 0 5px;
+                    display: block;
+                }
+                .link {
+                    color: #999;
+                }
+            }
+        }
+    }
+}

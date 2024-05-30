@@ -47,9 +47,19 @@ const Subcart:FC<Props> = ({showSubcart, setShowSubcart}) => {
                                     <Link className='link' to={"/product/"+ id}><h5>{name}</h5></Link>
                                     <p className='item-price'>{amount} {chosenSize} <span> x </span>{newPrice} $</p>
                                     <div className='control'>
-                                        <button onClick={()=>dispatch(increaseAmount({id, size: chosenSize, color: chosenColor}))}>+</button>
+                                        <button 
+                                        className='inc-dec'
+                                        onClick={()=>dispatch(increaseAmount({id, size: chosenSize, color: chosenColor}))}
+                                        >
+                                        +
+                                        </button>
                                         <input type="number" min={0} value={amount} />
-                                        <button onClick={()=>dispatch(decreaseAmount({id, size: chosenSize, color: chosenColor}))}>-</button>
+                                        <button 
+                                        className='inc-dec'
+                                        onClick={()=>dispatch(decreaseAmount({id, size: chosenSize, color: chosenColor}))}
+                                        >
+                                        -
+                                        </button>
                                     </div>
                                 </div>
                                 <div className='remove'>

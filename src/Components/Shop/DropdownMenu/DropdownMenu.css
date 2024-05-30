@@ -1,0 +1,71 @@
+.drop-menu .toggle-btn {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 5px 20px;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: #63636309 0 2px 8px;
+}
+
+.drop-menu .toggle-btn span:not(:last-child) {
+    margin-right: 15px;
+}
+
+.drop-menu .drop-items {
+    transition: 0.5s;
+    background: #fff;
+    padding: 15px 0;
+    margin-top: 5px;
+    box-shadow: #cff3d1 0 2px 8px;
+}
+
+.drop-menu .drop-items.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.drop-menu .drop-items.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10%);
+}
+
+.drop-menu .drop-items .drop-item {
+    display: block;
+    background: none;
+    border: none;
+    padding: 6px 25px;
+    min-width: 250px;
+    text-align: left;
+    transition: 0.5s;
+}
+
+.drop-menu .drop-items .drop-item:hover {
+    background: rebeccapurple;
+    color: #fff;
+}
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .drop-menu {
+        width: 170px;
+    }
+
+    .shop2 .content .top-filter .select-boxes .sort {
+        margin-right: 15px;
+    }
+
+    .drop-menu .toggle-btn span:not(:last-child) {
+        margin-right: 0;
+        font-size: 14px;
+    }
+
+    .drop-menu .drop-items .drop-item {
+        font-size: 14px;
+        min-width: 170px;
+        padding: 6px 17px;
+    }
+}

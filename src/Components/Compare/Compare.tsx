@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
 import {RiDeleteBin2Line} from "react-icons/ri"
 import emptyCompareImg from "../Assets/images/empty-compare.png"
+import compareBanner from "../Assets/images/compare_banner.png"
 import "./Compare.scss"
 import { removeFromCompare } from '../Redux/Slices/compareSlice';
 import BlankPage from '../BlankPage/BlankPage';
+import Banner from '../Banner/Banner';
 
 export const Compare = () => {
 
@@ -15,6 +17,7 @@ export const Compare = () => {
 
   return (
     <div className='compare'>
+      <Banner title='Your compare' img={compareBanner} num={compareItems.length} />
         <div className='container'>
             {compareItems.length ?
               <div className='content'>

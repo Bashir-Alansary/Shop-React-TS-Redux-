@@ -103,14 +103,13 @@
 
         button, input {
             height: 100%;
-            width: 23px;
             color: rebeccapurple;
             font-size: 14px;
             font-weight: 600;
         }
 
         button {
-            border: none;
+            width: 23px;
             background: #fff;
             display: flex;
             align-items: center;
@@ -119,6 +118,7 @@
         }
 
         input {
+            width: 26px;
             background: transparent;
             border: none;
             text-align: center;
