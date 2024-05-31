@@ -41,7 +41,7 @@ const Subcart:FC<Props> = ({showSubcart, setShowSubcart}) => {
                         return(
                             <div key={i} className='subcart-item flx'>
                                 <Link className='link' to={"/product/"+ id}>
-                                    <img src={smallImgs[0].img} />
+                                    <img src={chosenColor.img} />
                                 </Link>
                                 <div className='details'>
                                     <Link className='link' to={"/product/"+ id}><h5>{name}</h5></Link>

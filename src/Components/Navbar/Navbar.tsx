@@ -11,10 +11,12 @@ import wishlist from "../Assets/images/wishlist.png"
 
 import "./Navbar.scss"
 import Subcart from '../Subcart/Subcart';
+import SubSearch from '../SubSearch/SubSearch';
 
 export const Navbar:FC = () => {
     const {amount} = useSelector((state:RootState) => state.shop.cart);
     const [showSubcart, setShowSubcart] = useState<boolean>(false);
+    const [showSearch, setShowSearch] = useState<boolean>(false);
   return (
     <div className='navbar'>
         <div className='container'>
@@ -32,9 +34,11 @@ export const Navbar:FC = () => {
             </ul>
             <div className='options flx'>
                 <div className='login-search flx'>
-                    <button className="search op-btn">
+                    <button className="search op-btn" onClick={()=> setShowSearch(true)}>
                         <FiSearch className='icon' />
                     </button>
+                    <SubSearch showSearch={showSearch} setShowSearch={setShowSearch} />
+                    
                     <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
                     <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
                 </div>

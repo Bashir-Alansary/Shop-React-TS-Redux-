@@ -9,7 +9,7 @@
     .container {
         height: 100%;
 
-        .content {
+        &>.content {
             align-items: center;
             height: 100%;
 

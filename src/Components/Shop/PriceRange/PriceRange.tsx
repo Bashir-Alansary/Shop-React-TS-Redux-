@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useRef, useEffect } from 'react'
 import "./PriceRange.scss"
 import { RangeType } from '../../Assets/types';
 
@@ -14,12 +14,13 @@ const PriceRange:FC<Props> = ({range, setRange, filterPrices, togglePrice}) => {
     const sliderBar = useRef<HTMLDivElement | null>(null);
     const minRangeInputRef = useRef<HTMLInputElement | null>(null);
     const maxRangeInputRef = useRef<HTMLInputElement | null>(null);
+
     const priceGap = 40;
+    const minRangeInput = minRangeInputRef.current;
+    const maxRangeInput = maxRangeInputRef.current;
 
     const handleRange = (e:React.ChangeEvent<HTMLInputElement>) => {
         
-        const minRangeInput = minRangeInputRef.current;
-        const maxRangeInput = maxRangeInputRef.current;
         const minRange = minRangeInput?.value !== undefined ? parseInt(minRangeInput?.value) : 0;
         const maxRange = maxRangeInput?.value !== undefined ? parseInt(maxRangeInput?.value) : 0;
         
@@ -42,6 +43,17 @@ const PriceRange:FC<Props> = ({range, setRange, filterPrices, togglePrice}) => {
         }
         filterPrices(e);
     }
+
+    useEffect(()=> {
+        if (range.minRange === 0 && range.maxRange === 300) {
+            if (minRangeInput !== null && maxRangeInput !== null && sliderBar.current !== null) {
+                minRangeInput.value = "0";
+                maxRangeInput.value = "300";
+                sliderBar.current.style.left = "0";
+                sliderBar.current.style.right = "0";
+            }
+        }
+    })
 
     return (
         <div className={togglePrice? "price-range show" : "price-range hide"}>

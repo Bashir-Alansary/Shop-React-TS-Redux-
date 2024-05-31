@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import "./DropdownMenu.css";
+import "./DropdownMenu.scss";
 import { ProductType, SortShownType, SortShownVal } from '../../Assets/types';
 
 interface Props {
