@@ -9,13 +9,15 @@ import {
     decreaseAmount,
     increaseAmount,
     removeFromCart
-} from '../Redux/Slices/shopSlice';
+} from '../Redux/Slices/cartSlice';
 import BlankPage from '../BlankPage/BlankPage';
 import Banner from '../Banner/Banner';
 import { Link } from 'react-router-dom';
+import { IDSizeColor } from '../Assets/types';
 
 export const Cart = () => {
-    const cart = useSelector((state:RootState) => state.shop.cart);
+    const cart = useSelector((state:RootState) => state.cart);
+    const {checkoutPath} = useSelector((state:RootState) => state.global);
     const {cartItems, amount, total} = cart;
     console.log(cartItems);
     
@@ -43,6 +45,7 @@ export const Cart = () => {
                             {
                                 cartItems.map((item, i) => {
                                     const {id, name, newPrice, amount, total, chosenSize, chosenColor} = item;
+                                    const funParam:IDSizeColor = {id, size: chosenSize, color: chosenColor};
                                     return(
                                         <tr key={i}>
                                             <td>
@@ -65,15 +68,15 @@ export const Cart = () => {
                                             </td>
                                             <td>{newPrice}</td>
                                             <td className='amount'>
-                                                <button onClick={() => dispatch(increaseAmount({id, size: chosenSize, color: chosenColor}))}>+</button> 
+                                                <button onClick={() => dispatch(increaseAmount(funParam))}>+</button> 
                                                 <input type='number' value = {amount} onChange={()=>console.log("input")}/>
-                                                <button onClick={() => dispatch(decreaseAmount({id, size: chosenSize, color: chosenColor}))}>-</button> 
+                                                <button onClick={() => dispatch(decreaseAmount(funParam))}>-</button> 
                                             </td>
                                             <td>{total}</td>
                                             <td>
                                             <button
                                             className='remove' 
-                                            onClick={() => dispatch(removeFromCart({id, size: chosenSize, color: chosenColor}))}
+                                            onClick={() => dispatch(removeFromCart(funParam))}
                                             >
                                                 <RiDeleteBin2Line />
                                             </button>
@@ -93,7 +96,7 @@ export const Cart = () => {
                         <b>Total: </b><span>{total}$</span>
                         </div>
                         <div className='update-cart'>
-                        <button>Update<span className='hide-mobile'> Cart</span></button>
+                        <Link className='link special-btn' to={checkoutPath}>checkout</Link>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Item } from '../../Item/Item'
-import products from '../../Assets/products'
+import products from '../../Assets/globalData/products'
 
 interface Props {
   id: number,

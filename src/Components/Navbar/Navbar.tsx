@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../Redux/store'
 
 import logo from "../Assets/images/logo.png"
@@ -12,26 +12,49 @@ import wishlist from "../Assets/images/wishlist.png"
 import "./Navbar.scss"
 import Subcart from '../Subcart/Subcart';
 import SubSearch from '../SubSearch/SubSearch';
+import TemplatesList from '../TemplatesList/TemplatesList';
+import { setShowSubcart } from '../Redux/Slices/globalSlice';
 
 export const Navbar:FC = () => {
-    const {amount} = useSelector((state:RootState) => state.shop.cart);
-    const [showSubcart, setShowSubcart] = useState<boolean>(false);
+
+    const {amount} = useSelector((state:RootState) => state.cart);
+    const {checkoutPath} = useSelector((state:RootState) => state.global);
+    const dispatch = useDispatch();
+    const [showTemplates, setShowTemplates] = useState<boolean>(false);
     const [showSearch, setShowSearch] = useState<boolean>(false);
+    const [togglebtn, setToggleBtn] = useState(false);
+
+    const location = useLocation();
+
+    const hideMobileMenu = (): void => { setToggleBtn(false);}
+
   return (
+    <>
+    { location.pathname !== checkoutPath &&
     <div className='navbar'>
         <div className='container'>
             <div className='content flx'>
             <div className='logo'>
                 <img src={logo} />
             </div>
-            <ul className='links flx'>
-                <li><NavLink className='link' to="/" >home</NavLink></li>
-                <li><NavLink className='link' to="/men">Men</NavLink></li>
-                <li><NavLink className='link' to="/women">Wemon</NavLink></li>
-                <li><NavLink className='link' to="/kids">Kids</NavLink></li>
-                <li><NavLink className='link' to="/shop">shop</NavLink></li>
-                <li><NavLink className='link' to="/cart">cart</NavLink></li>
-            </ul>
+            <div className={togglebtn? 'main-links show' : 'main-links hide'}>
+                <ul className='links flx'>
+                    <li><NavLink className='link' to="/" >home</NavLink></li>
+                    <li><NavLink className='link' to="/men">Men</NavLink></li>
+                    <li><NavLink className='link' to="/women">Wemon</NavLink></li>
+                    <li><NavLink className='link' to="/kids">Kids</NavLink></li>
+                    <li><NavLink className='link' to="/shop">shop</NavLink></li>
+                </ul>
+                <div className='tamplates-link' onMouseEnter={()=>setShowTemplates(true)} onMouseLeave={()=>setShowTemplates(false)}>
+                    <div className='btn-content'>
+                        <button>
+                            <span>tamplates</span>
+                            <FiPlus className='templates-icon'/>
+                        </button>
+                    </div>
+                    <TemplatesList showTemplates = {showTemplates} hideMobileMenu={hideMobileMenu} />
+                </div>
+            </div>
             <div className='options flx'>
                 <div className='login-search flx'>
                     <button className="search op-btn" onClick={()=> setShowSearch(true)}>
@@ -42,14 +65,16 @@ export const Navbar:FC = () => {
                     <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
                     <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
                 </div>
-                <button className='cart-btn op-btn' onClick={()=> setShowSubcart(true)}>
+                <button className='cart-btn op-btn' onClick={()=> dispatch(setShowSubcart(true))}>
                     <span className='num'>{amount}</span>
                     <img src={cart} />
                 </button>
-                <Subcart showSubcart = {showSubcart} setShowSubcart = {setShowSubcart} />
+                <Subcart />
             </div>
             </div>
         </div>
     </div>
+    }
+    </>
   )
 }

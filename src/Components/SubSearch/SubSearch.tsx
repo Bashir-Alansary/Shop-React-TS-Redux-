@@ -3,9 +3,11 @@ import {Link} from 'react-router-dom';
 import "./SubSearch.scss"
 import {FiSearch } from "react-icons/fi";
 import { IoCloseSharp } from "react-icons/io5";
-import products from '../Assets/products';
+import products from '../Assets/globalData/products';
 import { Item } from '../Item/Item';
 import { ProductType } from '../Assets/types';
+import { useDispatch } from 'react-redux';
+import { setSearchInputVal } from '../Redux/Slices/globalSlice';
 
 interface Props {
   showSearch: boolean,
@@ -14,9 +16,9 @@ interface Props {
 
 const SubSearch:FC<Props> = ({showSearch, setShowSearch}) => {
 
-  // const {setSearchInputVal} = useShopContext();
   const [inputVal, setInputVal] = useState<string>("");
   const[searchItems, setSearchItems] = useState<ProductType[]>([]);
+  const dispatch = useDispatch();
 
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {value} = e.target;
@@ -31,7 +33,7 @@ const SubSearch:FC<Props> = ({showSearch, setShowSearch}) => {
 
   const handleCloseBtn = (): void => {
     setShowSearch(false);
-    // setSearchInputVal(inputVal);
+    dispatch(setSearchInputVal(inputVal));
     setInputVal("");
     setSearchItems([]);
   }

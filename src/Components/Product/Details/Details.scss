@@ -57,6 +57,7 @@
     }
 
     .add-to-cart {
+        $radiusVal: 5px;
         margin-bottom: 20px;
         .inputs-content {
             display: flex;
@@ -76,8 +77,8 @@
                         text-align: center;
                         border: 1px solid #e2e2e2;
                         color: rebeccapurple;
-                        border-top-left-radius: 5px;
-                        border-bottom-left-radius: 5px;
+                        border-top-left-radius: $radiusVal;
+                        border-bottom-left-radius: $radiusVal;
                         &:focus {
                             outline: none;
                         }
@@ -108,16 +109,29 @@
         }
 
         .add {
-            width: 235px;
+            width: 237px;
             height: 42px;
+            line-height: 42px;;
             border: none;
             cursor: pointer;
-            background: #b24af7;
-            color: #fff;
+            text-transform: uppercase;
+            border-top-right-radius: $radiusVal;
+            border-bottom-right-radius: $radiusVal;
+            background: #d7d7d7;
+            border: 1px solid #c9c9c9;
+            &:not(.disabled) {font-size: 15px;}
             &.disabled {
                 cursor: not-allowed;
-                background: #d3a2f3 !important;
+                font-size: 20px;
             }
+        }
+    }
+
+    .buy {
+        .special-btn {
+            color: #fff;
+            width: 330px;
+            text-transform: uppercase;
         }
     }
 

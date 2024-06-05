@@ -30,6 +30,15 @@ interface ProductType {
     desc: string,
 }
 
+interface IDColor {
+    id: number,
+    color: SmallImgType,
+}
+
+interface IDSizeColor extends IDColor {
+    size: string,
+}
+
 type SortShownVal = string | number;
 
 interface SortShownType {
@@ -49,15 +58,14 @@ interface RangeType {
     maxRange: number,
 }
 
-export const isItemExist = (id: number, list: ProductType[]): boolean => {
-    const theItem:ProductType | undefined = list.find((item) => item.id === id);
-    if (theItem === undefined) {
-        return false
-    } else {
-        return true
-    }
-  }
-
-
-export type { ProductType, SmallImgType, InfoType, FilterProps, RangeType, SortShownType, SortShownVal}
+export type { ProductType, 
+    SmallImgType,
+    InfoType,
+    IDColor,
+    IDSizeColor,
+    FilterProps,
+    RangeType,
+    SortShownType,
+    SortShownVal
+}
 

@@ -1,0 +1,124 @@
+.templates-list {
+    position: absolute;
+    top: 90px;
+    left: -461px;
+    width: 1000px;
+    z-index: 999;
+    background: linear-gradient(180deg,#eeeeee, #f0fdff);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.templates-list.show {
+    height: 297px;
+}
+
+.templates-list.hide {
+    height: 0;
+}
+
+.templates-list .content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.templates-list .content .templates ul {
+    margin-right: 100px;
+}
+
+.templates-list ul li {
+    position: relative;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+.templates-list .templates {
+    display: flex;
+}
+
+.templates-list .templates ul .link {
+    transition: 0.5s;
+}
+
+.templates-list .templates ul li .link:after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: rebeccapurple;
+    transition: 0.5s;
+}
+
+.templates-list .templates ul li:hover .link:after {
+    width: 100%;
+    color: rebeccapurple;
+}
+
+.templates-list .templates ul li:hover .link {
+    color: rebeccapurple !important;
+}
+
+.templates-list .brands {
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.templates-list .brands li {
+    width: 90px;
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 1px 40px 0 rgba(0,0,0,.07);
+}
+
+.templates-list .brands li .link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.templates-list .brands > li img {
+    width: 70px;
+}
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .templates-list {
+        width: 100%;
+        left: 0;
+        top: -310px;
+        height: 297px;
+        background: #fff;
+        border: 20px solid #efefef;
+    }
+
+    .templates-list.show {
+        left: 0;
+        height: 297px;
+    }
+    
+    .templates-list.hide {
+        left: -100%;
+        height: 297px;
+    }
+
+    .templates-list .templates {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .templates-list .content .templates ul {
+        margin-right: 0;
+    }
+
+    .templates-list .brands {
+        display: none;
+    }
+}

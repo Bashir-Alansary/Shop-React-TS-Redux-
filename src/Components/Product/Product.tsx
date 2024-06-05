@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import products from '../Assets/products';
+import products from '../Assets/globalData/products';
 import { ProductImgs } from './ProductImgs/ProductImgs';
 import ProductAbout from './ProductAbout/ProductAbout';
 import Related from './Related/Related';

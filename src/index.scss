@@ -12,18 +12,29 @@ body {
 $navHeight: 90px;
 .navbar {
     height: $navHeight;
+    .tamplates-link .btn-content > button {
+      height: $navHeight;
+    }
 }
 
-.App .inner {
-    padding-top: $navHeight
+.App .inner:not(:only-child) {
+    padding-top: $navHeight;
 }
+
 
 
 /* constants */
 .container {
-  width: 94%;
   margin: 0 auto;
+  &:not(.checkout .container) {
+    width: 94%;
+  }
 }
+
+.checkout .container {
+  width: 80%;
+}
+
 
 h1 {
   margin-top: 0;

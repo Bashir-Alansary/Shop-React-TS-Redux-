@@ -6,13 +6,14 @@ import { FiHeart, FiShare2 } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
-import paymentMethods from '../../Assets/details';
-import { ProductType, SmallImgType, isItemExist } from '../../Assets/types';
+import paymentMethods from './data';
+import { ProductType, SmallImgType } from '../../Assets/types';
+import { isItemExist } from '../../Assets/globalFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWish } from '../../Redux/Slices/wishSlice';
 import { RootState } from '../../Redux/store';
 import { addToCompare } from '../../Redux/Slices/compareSlice';
-import { addAmountToItem } from '../../Redux/Slices/shopSlice';
+import { addAmountToItem } from '../../Redux/Slices/cartSlice';
 import "./Details.scss"
 
 interface Props {
@@ -24,6 +25,7 @@ const Details:FC<Props> = ({product}) => {
   const {id, name, smallImgs, category, desc, newPrice, oldPrice, sizes} = product;
   const {wishItems} = useSelector((state:RootState) => state.wish)
   const {compareItems} = useSelector((state:RootState) => state.compare)
+  const {checkoutPath} = useSelector((state:RootState) => state.global);
   const dispatch = useDispatch();
 
   const [amount, setAmount] = useState<number>(1);
@@ -79,10 +81,7 @@ const Details:FC<Props> = ({product}) => {
   return (
     <div className='details'>
       <div className='stars'>
-        <span><IoMdStar /></span>
-        <span><IoMdStar /></span>
-        <span><IoMdStar /></span>
-        <span><IoMdStar /></span>
+        {[...Array(4)].map((star, index)=> <span><IoMdStar /></span>)}
         <span><IoMdStarHalf /></span>
         <span className='num'>(4.5)</span>
       </div>
@@ -139,15 +138,15 @@ const Details:FC<Props> = ({product}) => {
             </div>
           </div>
           <button 
-          className='add'
+          className={addLoad ? 'disabled add' : 'add'}
           onClick={() => handleAddAmount(id)}
           >
-          {addLoad ? <AiOutlineReload className='load'/>  : 'add'}
+          {addLoad ? <AiOutlineReload className='load'/>  : 'add to cart'}
           </button>
         </div>
-        <p>
-          massage
-        </p>
+        <div className='buy'>
+          <Link className='link special-btn' to={checkoutPath}>Buy it now</Link>
+        </div>
       </div>
       <hr />
       <div className='interact'>

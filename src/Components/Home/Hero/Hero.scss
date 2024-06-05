@@ -1,0 +1,67 @@
+.hero {
+    position: relative;
+    height: 660px;
+    background: url('../../Assets/images/hero.png');
+    background-size: cover;
+    .container {
+        height: 100%;
+        .content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .text {
+                h5 {
+                    margin: 0;
+                    &:first-of-type {
+                        color: #ef8256;
+                        font-size: 25px;
+                        font-family: 'Allison', cursive;
+                    }
+                    &:last-of-type {
+                        color: #1948a0;
+                        font-family: 'Allison', cursive;
+                        font-size: 35px;
+                    }
+                }
+                h1 {
+                    font-size: 55px;
+                    margin: 0;
+                }
+                button {
+                    display: flex;
+                    align-items: center;
+                    background: none;
+                    padding: 10px 22px;
+                    margin-top: 25px;
+                    font-size: 16px;
+                    border: 1px solid #000;
+                    cursor: pointer;
+                    transition: 0.5s;
+                    &:hover {
+                        background: #1948a0;
+                        color: #fff;
+                    }
+                    span {
+                        margin-right: 7px;
+                    }
+                }
+            }
+        }
+    }
+
+    img.wave.bottom {
+        bottom: 0;
+    }
+}
+
+
+/* media */
+@media only screen and (max-width: 600px) {
+    .hero .content {
+        height: 90%;
+    }
+
+    .hero .text h1 {
+        font-size: 47px;
+    }
+}

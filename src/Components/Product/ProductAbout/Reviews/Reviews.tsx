@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./Reviews.scss"
-import data from "../../../Assets/reviews";
+import data from "./data";
 import { IoMdStar} from "react-icons/io";
 import reviewImg from "../../../Assets/images/user2.jpg";
 import Stars from './Stars';

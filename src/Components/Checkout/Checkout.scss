@@ -1,0 +1,6 @@
+.checkout {
+    $paddVal: 35px;
+    .forms, .items-list {
+        padding: $paddVal $paddVal $paddVal 0;
+    }
+}

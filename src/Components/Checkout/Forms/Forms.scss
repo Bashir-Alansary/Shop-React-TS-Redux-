@@ -1,0 +1,107 @@
+.forms {
+    width: 55%;
+    border-right: 1px solid #888;
+    $titleMargen: 15px;
+    .box {margin-top: 30px;}
+
+    h3:not(.title h3) {
+        margin-top: 0;
+        margin-bottom: $titleMargen;
+        font-size: 18px;
+    }
+
+    label, span, .login-link {font-size: 14px;}
+
+    .input-content:not(.flx) {
+        input:not(input[type="checkbox"]), select {
+            width: 100%
+        }
+    }
+
+    .input-content.flx2 {
+        input, select {
+            width: 48%
+        }
+    }
+
+    .input-content.flx3 {
+        input, select {
+            width: 31%
+        }
+    }
+
+    .input-content {
+        display: flex;
+        align-items: center;
+        margin-bottom: 13px;
+
+        input:not(input[type="checkbox"]), select {
+            height: 48px;
+            padding: 15px 10px;
+            outline: 1px solid #d8d7d7;
+            border: none;
+            border-radius: 4px;
+        } 
+
+        input[type="checkbox"] {
+            margin-right: 15px;
+        }
+
+        select {
+            border-right: 15px solid transparent;
+        }
+
+        &:has(.input-icon) {
+            position: relative;
+            .input-icon {
+                position: absolute;
+                right: 15px;
+            }
+        }
+        
+
+    }
+
+    .contact {
+        .title {
+            align-items: center;
+            h3 {margin: 0;}
+            .login-link {color: #000;}
+            margin-bottom: $titleMargen;
+        }
+    }
+
+    .delivery {
+        .shipping {
+            h4 {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .method {
+                width: 100%;
+                padding: 18px;
+                background: #f5f5f5;
+            }
+        }
+    }
+
+    .payment {
+        .inputs {
+            background: #f4f4f4;
+        }
+        .credit {
+            height: 58px;
+            align-items: center;
+            padding: 0 20px;
+            margin-top: 20px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border: 1px solid #000;
+        }
+
+        .content {
+            padding: 20px;
+        }
+    }
+}

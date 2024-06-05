@@ -4,7 +4,7 @@ import { BsGridFill } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import "./Shop.scss"
-import products from '../Assets/products';
+import products from '../Assets/globalData/products';
 import ShopBanner from './ShopBanner/ShopBanner';
 import FilterWomenData from './FilterWomenData';
 import FilterMenData from './FilterMenData';
@@ -12,11 +12,11 @@ import FilterKidsData from './FilterKidsData';
 import FilterAllData from './FilterAllData';
 import { ProductType, RangeType, SortShownVal } from '../Assets/types';
 import PriceRange from './PriceRange/PriceRange';
-import newArrivals from '../Assets/newArrivals';
+import newArrivals from '../Assets/globalData/newArrivals';
 import { Item } from '../Item/Item';
 import noItems from "../Assets/images/no-items.png"
 import Pagination from './Pagination/Pagination';
-import { shownItemsNum, sortBy } from '../Assets/dropdown';
+import { shownItemsNum, sortBy } from './DropdownMenu/data';
 import DropdownMenu from './DropdownMenu/DropdownMenu';
 
 interface Props {

@@ -20,10 +20,64 @@
                 }
             }
 
-            .links li {
-                margin-left: 20px;
-            }
+            .main-links {
+                display: flex;
+                align-items: center;
+                .links {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    li {
+                        margin-right: 20px;
+                        .link {
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                bottom: -2px;
+                                left: 25%;
+                                width: 50%;
+                                height: 2px;
+                                background: none;
+                                transition: 0.7s;
+                             }
+                             &.active {
+                                :after {
+                                    background: #ef8256;
+                                    bottom: 0;
+                             }
+                            }
+                        }
+                    }
+                }
 
+                .tamplates-link {
+                    position: relative;
+                    .btn-content {
+                        button {
+                            display: flex;
+                            align-items: center;
+                            padding: 0;
+                            background: none;
+                            width: 100%;
+                            span {
+                                color: rebeccapurple;
+                                font-size: 16px;
+                            }
+                            .templates-icon {
+                                margin-left: 5px;
+                                font-size: 14px;
+                                color: #999;
+                                transition: 0.5s;
+                            }
+                        }
+                    }
+                    &:not(.for-mobile):hover .templates-icon{transform: rotate(45deg);}
+                    &:not(.for-mobile):hover button span,
+                    &:not(.for-mobile):hover button .templates-icon {color: #fc5d1f;}
+                }
+                    
+            }
             
             .options {
                 .op-btn {
@@ -74,4 +128,21 @@
             }
         }
     }
+}
+
+
+.navbar .main-links .tamplates-link.for-mobile {
+    display: none;
+}
+
+.navbar .main-links .tamplates-link .btn-content {
+    height: 90px;
+    line-height: 90px;
+}
+
+.navbar .main-links .tamplates-link button {
+    padding: 0;
+    background: none;
+    border: none;
+    width: 100%;
 }

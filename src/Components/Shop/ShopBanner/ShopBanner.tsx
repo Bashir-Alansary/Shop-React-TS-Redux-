@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import {Link} from "react-router-dom";
-import products from '../../Assets/products';
+import products from '../../Assets/globalData/products';
 import "./ShopBanner.scss"
 
 interface Props {

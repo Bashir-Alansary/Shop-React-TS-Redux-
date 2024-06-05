@@ -1,17 +1,19 @@
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addToCart } from '../Redux/Slices/shopSlice';
+import { addToCart } from '../Redux/Slices/cartSlice';
 import { addToWish } from '../Redux/Slices/wishSlice';
 import { DiGitCompare } from "react-icons/di";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart, FaDollarSign } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
-import { SmallImgType, isItemExist } from '../Assets/types';
+import { SmallImgType } from '../Assets/types';
+import { isItemExist } from '../Assets/globalFunctions';
 import "./Item.scss";
 import { RootState } from '../Redux/store';
 import { addToCompare } from '../Redux/Slices/compareSlice';
+import { setShowSubcart } from '../Redux/Slices/globalSlice';
 
 interface Props {
     id: number,
@@ -59,6 +61,7 @@ export const Item:FC<Props> = ({id, name, smallImgs, newPrice, oldPrice, desc, i
     setAddLoad(true);
     setTimeout(function() {
       dispatch(addToCart({id, color: shownImg}));
+      dispatch(setShowSubcart(true));
       setAddLoad(false);
     }, 500);
   }

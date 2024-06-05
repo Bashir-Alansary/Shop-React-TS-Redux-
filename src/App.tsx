@@ -4,7 +4,7 @@ import { Navbar } from './Components/Navbar/Navbar';
 import './App.scss';
 import { RootState } from './Components/Redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import {getItemTotals} from './Components/Redux/Slices/shopSlice';
+import {getItemTotals} from './Components/Redux/Slices/cartSlice';
 import { useEffect } from 'react';
 import { Home } from './Components/Home/Home';
 import { Wishlist } from './Components/Wishlist/Wishlist';
@@ -17,12 +17,15 @@ import womenBanner from "./Components/Assets/images/women_banner.png";
 import menBanner from "./Components/Assets/images/men_banner.png";
 import kidsBanner from "./Components/Assets/images/kids_banner.png";
 import shopBanner from "./Components/Assets/images/shop_banner.png";
+import Search from './Components/Search/Search';
+import Checkout from './Components/Checkout/Checkout';
 
 function App() {
-  
-  const cart = useSelector((state:RootState) => state.shop.cart);
-  const dispatch = useDispatch();
 
+  const cart = useSelector((state:RootState) => state.cart);
+  const {checkoutPath} = useSelector((state:RootState) => state.global);
+  const dispatch = useDispatch();
+  
     useEffect(()=> {
         dispatch(getItemTotals());
     }, [cart]);
@@ -42,6 +45,8 @@ function App() {
               <Route path='/wishlist' element={<Wishlist />} />
               <Route path='/compare' element={<Compare />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/search' element={<Search />} />
+              <Route path={checkoutPath} element={<Checkout />} />
               <Route path='/product/:id' element={<Product />} />
             </Routes>
           </div>

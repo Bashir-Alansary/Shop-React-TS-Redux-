@@ -1,15 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import shopSlice from "./Slices/shopSlice";
+import cartSlice from "./Slices/cartSlice";
 import wishSlice from "./Slices/wishSlice";
 import compareSlice from "./Slices/compareSlice";
+import globalSlice from "./Slices/globalSlice";
 
 
 
 export const store = configureStore({
     reducer: {
-        shop: shopSlice,
+        cart: cartSlice,
         wish: wishSlice,
         compare: compareSlice,
+        global: globalSlice,
     }
 })
 

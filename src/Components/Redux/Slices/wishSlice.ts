@@ -1,5 +1,5 @@
 import {createSlice } from "@reduxjs/toolkit";
-import products from "../../Assets/products";
+import products from "../../Assets/globalData/products";
 import { ProductType } from "../../Assets/types";
 
 interface WishState {
