@@ -1,3 +1,5 @@
+
+/* body */
 body {
   margin: 0;
   padding: 0;
@@ -78,9 +80,16 @@ button {
 }
 
 /* table */
+.for-table {
+  overflow-x: scroll;
+}
+
 table {
   width: 100%;
   background: beige;
+  @media only screen and (max-width: 600px) {
+    width: 800px;
+  }
 
   th, td {
       text-align: center;
@@ -184,6 +193,11 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/* input checkbox */
+input[type="checkbox"], input[type="checkbox"] + label {
+  cursor: pointer;
+}
+
 /* image wave and div gradient */
 img.wave {
   position: absolute;
@@ -202,9 +216,19 @@ div.gradient:not(.footer .gradient) {
   bottom: 0;
 }
 
-/* hide on PC*/
+
+// hide on PC
 .hide-pc {
-  display: none;
+  @media only screen and (min-width: 600px) {
+    display: none !important;
+  }
+}
+
+// hide-mobile
+.hide-mobile {
+  @media only screen and (max-width: 600px) {
+    display: none !important;
+  }
 }
 
 /* animation keyframes */

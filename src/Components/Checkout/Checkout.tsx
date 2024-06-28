@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 import "./Checkout.scss"
-import CheckoutNav from './CheckoutNav/CheckoutNav'
+import Nav from './Nav/Nav'
 import Forms from './Forms/Forms'
 import ItemsList from './ItemsList/ItemsList'
 
 const Checkout:FC = () => {
+
   return (
     <div className='checkout'>
-        <CheckoutNav />
-        <div className='container flx'>
+        <Nav />
+        <div className='content flx'>
           <Forms />
           <ItemsList />
         </div>

@@ -19,6 +19,9 @@ import kidsBanner from "./Components/Assets/images/kids_banner.png";
 import shopBanner from "./Components/Assets/images/shop_banner.png";
 import Search from './Components/Search/Search';
 import Checkout from './Components/Checkout/Checkout';
+import NotFound from './Components/NotFound/NotFound';
+import About from './Components/About/About';
+import Contact from './Components/Contact/Contact';
 
 function App() {
 
@@ -46,8 +49,12 @@ function App() {
               <Route path='/compare' element={<Compare />} />
               <Route path='/login' element={<Login />} />
               <Route path='/search' element={<Search />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
               <Route path={checkoutPath} element={<Checkout />} />
               <Route path='/product/:id' element={<Product />} />
+              <Route path={checkoutPath + '/:id'} element={<Checkout />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <Footer />

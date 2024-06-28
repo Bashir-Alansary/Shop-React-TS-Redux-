@@ -27,10 +27,15 @@ export default () => {
       </div>
       <Swiper
         modules={[Navigation, Grid]}
-        spaceBetween={30}
         slidesPerView={4}
         grid={{rows: 2, fill: "row"}}
         navigation = {{nextEl: '.next', prevEl:'.prev'}}
+        breakpoints={{
+          200: {slidesPerView: 1, spaceBetween:15},
+          480: {slidesPerView: 2, spaceBetween:20},
+          780: {slidesPerView: 3, spaceBetween:25},
+          1000: {slidesPerView: 4, spaceBetween:30}
+        }}
       >
         {
           popular.map(item => {

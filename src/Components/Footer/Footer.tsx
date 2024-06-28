@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { pages, media, paymentWays, contactWays } from './data'
+import { pages, media, paymentWays } from './data'
+import { contactWays } from "../Assets/globalData/contactWays"
 import logo from "../Assets/images/logo.png"
 import "./Footer.scss"
 import { useSelector } from 'react-redux';
@@ -13,7 +14,7 @@ const Footer = () => {
 
   return (
     <>
-    { location.pathname !== checkoutPath &&
+    { !location.pathname.includes(checkoutPath) &&
     <div className='footer'>
         <div className='content'>
             <div className='container'>

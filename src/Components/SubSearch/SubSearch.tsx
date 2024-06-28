@@ -5,7 +5,7 @@ import {FiSearch } from "react-icons/fi";
 import { IoCloseSharp } from "react-icons/io5";
 import products from '../Assets/globalData/products';
 import { Item } from '../Item/Item';
-import { ProductType } from '../Assets/types';
+import { InputEventType, ProductType } from '../Assets/types';
 import { useDispatch } from 'react-redux';
 import { setSearchInputVal } from '../Redux/Slices/globalSlice';
 
@@ -20,7 +20,7 @@ const SubSearch:FC<Props> = ({showSearch, setShowSearch}) => {
   const[searchItems, setSearchItems] = useState<ProductType[]>([]);
   const dispatch = useDispatch();
 
-  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchInput = (e: InputEventType) => {
     const {value} = e.target;
     setInputVal(value);
     if (value !== "") {
@@ -37,9 +37,6 @@ const SubSearch:FC<Props> = ({showSearch, setShowSearch}) => {
     setInputVal("");
     setSearchItems([]);
   }
-
-  console.log(showSearch);
-  
 
   return (
     <div className={showSearch? 'sub-search show' : 'sub-search hide'}>

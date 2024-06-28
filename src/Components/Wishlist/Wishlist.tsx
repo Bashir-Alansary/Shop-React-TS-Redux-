@@ -21,53 +21,55 @@ export const Wishlist = () => {
         <div className='container'>
             {wishItems.length ?
                 <div className='content'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Description</th>
-                                <th>Unit Price</th>
-                                <th>option</th>
-                                <th>remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                wishItems.map(item => {
-                                    const {id, smallImgs, name, newPrice} = item;
-                                    return(
-                                        <tr key={id}>
-                                            <td>
-                                                <Link 
-                                                className='link' 
-                                                to={'/product/' + id}
-                                                >
-                                                <img src={smallImgs[0].img} />
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link 
-                                                className='link' 
-                                                to={'/product/' + id}
-                                                >
-                                                {name}
-                                                </Link>
-                                            </td>
-                                            <td>{newPrice}</td>
-                                            <td className='special'>
-                                                <button className='special-btn'>option</button>
-                                            </td>
-                                            <td>
-                                            <button className='remove' onClick={()=>dispatch(removeFromWish(id))}>
-                                                <RiDeleteBin2Line />
-                                            </button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <div className='for-table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                    <th>Unit Price</th>
+                                    <th>option</th>
+                                    <th>remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    wishItems.map(item => {
+                                        const {id, smallImgs, name, newPrice} = item;
+                                        return(
+                                            <tr key={id}>
+                                                <td>
+                                                    <Link 
+                                                    className='link' 
+                                                    to={'/product/' + id}
+                                                    >
+                                                    <img src={smallImgs[0].img} />
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link 
+                                                    className='link' 
+                                                    to={'/product/' + id}
+                                                    >
+                                                    {name}
+                                                    </Link>
+                                                </td>
+                                                <td>{newPrice}</td>
+                                                <td className='special'>
+                                                    <button className='special-btn'>option</button>
+                                                </td>
+                                                <td>
+                                                <button className='remove' onClick={()=>dispatch(removeFromWish(id))}>
+                                                    <RiDeleteBin2Line />
+                                                </button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 :<BlankPage name='wishlist' img={emptyWishlistImg} />
             }

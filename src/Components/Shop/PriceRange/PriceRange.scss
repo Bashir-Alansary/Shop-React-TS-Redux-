@@ -1,10 +1,16 @@
 .price-range {
+    @media only screen and (max-width: 600px) {
+        padding: 0 20px;
+    }
     .slider {
         $val: 5px;
         position: relative;
         height: $val;
         background: #ddd;
         border-radius: $val/2;
+        @media only screen and (max-width: 600px) {
+            margin-top: 20px;
+        }
 
         .bar {
             position: absolute;

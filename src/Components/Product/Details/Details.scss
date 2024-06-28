@@ -1,5 +1,8 @@
 .details {
     width: 48%;
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+    }
     h1 {
         margin-bottom: 0;
     }
@@ -140,6 +143,9 @@
         .box {
             width: fit-content;
             margin-right: 30px;
+            @media only screen and (max-width: 600px) {
+                    margin-right: 29px;
+            }
             .icon-btn {
                 background: none;
                 border: none;
@@ -173,17 +179,5 @@
                 border: 2px solid transparent !important;
             }
         }
-    }
-}
-
-
-/* media */
-@media only screen and (max-width: 600px) {
-    .product-details {
-        width: 100%;
-    }
-
-    .product-details .interact .box {
-        margin-right: 29px;
     }
 }

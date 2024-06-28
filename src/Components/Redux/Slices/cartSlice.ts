@@ -1,16 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import products from "../../Assets/globalData/products";
-import { ProductType, SmallImgType, IDColor, IDSizeColor } from "../../Assets/types";
-
-interface CartItems extends ProductType {
-    amount: number,
-    total: number,
-    chosenSize: string,
-    chosenColor: SmallImgType,
-}
+import { ProductType, SmallImgType, IDColor, IDSizeColor, CartItemsType } from "../../Assets/types";
 
 interface CartState {
-    cartItems: CartItems[],
+    cartItems: CartItemsType[],
     total: number,
     amount: number,
 }

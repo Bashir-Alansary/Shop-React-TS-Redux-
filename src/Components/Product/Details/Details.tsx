@@ -7,7 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
 import paymentMethods from './data';
-import { ProductType, SmallImgType } from '../../Assets/types';
+import { CartNewKeys, ProductType, SmallImgType } from '../../Assets/types';
 import { isItemExist } from '../../Assets/globalFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWish } from '../../Redux/Slices/wishSlice';
@@ -15,6 +15,7 @@ import { RootState } from '../../Redux/store';
 import { addToCompare } from '../../Redux/Slices/compareSlice';
 import { addAmountToItem } from '../../Redux/Slices/cartSlice';
 import "./Details.scss"
+import { setCheckouItem } from '../../Redux/Slices/globalSlice';
 
 interface Props {
   product: ProductType,
@@ -35,6 +36,8 @@ const Details:FC<Props> = ({product}) => {
   const[wishLoad, setWishLoad] = useState<boolean>(false);
   const[compareLoad, setCompareLoad] = useState<boolean>(false);
   const[addLoad, setAddLoad] = useState<boolean>(false);
+
+  const checkItemParam: CartNewKeys = {chosenSize: size, chosenColor: color, amount, total: newPrice * amount};
 
   const addToWishBtn = (id:number): void => {
     setWishLoad(true);
@@ -145,7 +148,13 @@ const Details:FC<Props> = ({product}) => {
           </button>
         </div>
         <div className='buy'>
-          <Link className='link special-btn' to={checkoutPath}>Buy it now</Link>
+          <Link 
+          className='link special-btn' 
+          to={checkoutPath + "/" + id}
+          onClick={()=> dispatch(setCheckouItem(checkItemParam))}
+          >
+            Buy it now
+          </Link>
         </div>
       </div>
       <hr />

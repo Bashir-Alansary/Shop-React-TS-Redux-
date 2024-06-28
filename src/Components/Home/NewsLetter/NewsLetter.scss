@@ -7,9 +7,15 @@
         align-items: center;
         & > div {
             width: 46%;
+            @media only screen and (max-width: 600px) { 
+                width: 100%;
+            }
         }
 
         .imgbx {
+            @media only screen and (max-width: 600px) { 
+                display: none;
+            }
             img {
                 width: 100%;
                 margin-top: -70px;
@@ -28,6 +34,13 @@
                 color: #bf72ac;
                 font-family: 'Allison', cursive;
                 margin-top: 0;
+                @media only screen and (max-width: 600px) { 
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: #bf72ac;
+                    font-family: 'Allison', cursive;
+                    margin-top: 20px;
+                }
             }
 
             .features {
@@ -88,26 +101,5 @@
                 }
             }
         }
-    }
-}
-
-
-
-/* media */
-@media only screen and (max-width: 600px) { 
-    .newsletter .imgbx {
-        display: none;
-    }
-
-    .newsletter .content > div {
-        width: 100%;
-    }
-
-    .newsletter .text p {
-        font-size: 28px;
-        font-weight: 600;
-        color: #bf72ac;
-        font-family: 'Allison', cursive;
-        margin-top: 20px;
     }
 }

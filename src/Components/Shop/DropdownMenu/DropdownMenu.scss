@@ -1,7 +1,11 @@
 .drop-menu {
+    @media only screen and (max-width: 600px) {
+        width: 170px;
+    }
     .toggle-btn {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         border: none;
         padding: 5px 20px;
         width: 100%;
@@ -49,14 +53,6 @@
 
 /* media */
 @media only screen and (max-width: 600px) {
-    .drop-menu {
-        width: 170px;
-    }
-
-    .shop2 .content .top-filter .select-boxes .sort {
-        margin-right: 15px;
-    }
-
     .drop-menu .toggle-btn span:not(:last-child) {
         margin-right: 0;
         font-size: 14px;

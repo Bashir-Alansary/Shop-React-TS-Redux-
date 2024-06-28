@@ -28,49 +28,75 @@ export const Navbar:FC = () => {
 
     const hideMobileMenu = (): void => { setToggleBtn(false);}
 
+    const handleToggleBtn = () => {
+        if (togglebtn) {
+            setToggleBtn(false);
+            setShowTemplates(false);
+            console.log(showTemplates);
+        } else {
+            setToggleBtn(true);
+        }
+    }
+    
+
   return (
     <>
-    { location.pathname !== checkoutPath &&
+    { !location.pathname.includes(checkoutPath) &&
     <div className='navbar'>
         <div className='container'>
             <div className='content flx'>
-            <div className='logo'>
-                <img src={logo} />
-            </div>
-            <div className={togglebtn? 'main-links show' : 'main-links hide'}>
-                <ul className='links flx'>
-                    <li><NavLink className='link' to="/" >home</NavLink></li>
-                    <li><NavLink className='link' to="/men">Men</NavLink></li>
-                    <li><NavLink className='link' to="/women">Wemon</NavLink></li>
-                    <li><NavLink className='link' to="/kids">Kids</NavLink></li>
-                    <li><NavLink className='link' to="/shop">shop</NavLink></li>
-                </ul>
-                <div className='tamplates-link' onMouseEnter={()=>setShowTemplates(true)} onMouseLeave={()=>setShowTemplates(false)}>
-                    <div className='btn-content'>
-                        <button>
-                            <span>tamplates</span>
-                            <FiPlus className='templates-icon'/>
-                        </button>
+                <div className='logo'>
+                    <img src={logo} />
+                </div>
+                <div className={togglebtn? 'main-links show' : 'main-links hide'}>
+                    <ul className='links flx'>
+                        <li><NavLink className='link' onClick={hideMobileMenu} to="/">home</NavLink></li>
+                        <li><NavLink className='link' onClick={hideMobileMenu} to="/men">Men</NavLink></li>
+                        <li><NavLink className='link' onClick={hideMobileMenu} to="/women">Wemon</NavLink></li>
+                        <li><NavLink className='link' onClick={hideMobileMenu} to="/kids">Kids</NavLink></li>
+                        <li><NavLink className='link' onClick={hideMobileMenu} to="/shop">shop</NavLink></li>
+                    </ul>
+                    {/* for pc */}
+                    <div className='tamplates-link hide-mobile' onMouseEnter={()=>setShowTemplates(true)} onMouseLeave={()=>setShowTemplates(false)}>
+                        <div className='btn-content'>
+                            <button>
+                                <span>tamplates</span>
+                                <FiPlus className='templates-icon'/>
+                            </button>
+                        </div>
+                        <TemplatesList showTemplates = {showTemplates} hideMobileMenu={hideMobileMenu} />
                     </div>
-                    <TemplatesList showTemplates = {showTemplates} hideMobileMenu={hideMobileMenu} />
+                    {/* for mobile */}
+                    <div className='tamplates-link hide-pc' onClick={()=>setShowTemplates(!showTemplates)}>
+                        <div className='btn-content'>
+                            <button className={showTemplates? 'active' : ''}>
+                                <span>tamplates</span>
+                                <FiPlus className='templates-icon'/>
+                            </button>
+                        </div>
+                        <TemplatesList showTemplates = {showTemplates} hideMobileMenu={hideMobileMenu} />
+                    </div>
                 </div>
-            </div>
-            <div className='options flx'>
-                <div className='login-search flx'>
-                    <button className="search op-btn" onClick={()=> setShowSearch(true)}>
-                        <FiSearch className='icon' />
+                <div className='options flx'>
+                    <div className='login-search flx'>
+                        <button className="search op-btn" onClick={()=> setShowSearch(true)}>
+                            <FiSearch className='icon' />
+                        </button>
+                        <SubSearch showSearch={showSearch} setShowSearch={setShowSearch} />
+                        
+                        <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
+                        <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
+                    </div>
+                    <button className='cart-btn op-btn' onClick={()=> dispatch(setShowSubcart(true))}>
+                        <span className='num'>{amount}</span>
+                        <img src={cart} />
                     </button>
-                    <SubSearch showSearch={showSearch} setShowSearch={setShowSearch} />
-                    
-                    <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
-                    <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
+                    <Subcart />
                 </div>
-                <button className='cart-btn op-btn' onClick={()=> dispatch(setShowSubcart(true))}>
-                    <span className='num'>{amount}</span>
-                    <img src={cart} />
+                <button className='toggle hide-pc' onClick={handleToggleBtn}>
+                    <span className={togglebtn? 'short active' : 'short'}></span>
+                    <span className={togglebtn? 'long active' : 'long'}></span>
                 </button>
-                <Subcart />
-            </div>
             </div>
         </div>
     </div>

@@ -37,7 +37,7 @@ const DropdownMenu:FC<Props> = ({data, dropAction, categoryData}) => {
       onClick={handleToggleBtn}
       >
         <span className='val'>{chosenName}</span>
-        <span className='chevron'>{isChevronUp ? <FaChevronUp color='rebeccapurple'/> : <FaChevronDown/> }</span>
+        <span className='chevron flx-c'>{isChevronUp ? <FaChevronUp color='rebeccapurple'/> : <FaChevronDown/> }</span>
       </button>
       <ul className={isChevronUp ? 'drop-items show' : 'drop-items hide'}>
         {

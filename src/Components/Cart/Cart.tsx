@@ -19,9 +19,6 @@ export const Cart = () => {
     const cart = useSelector((state:RootState) => state.cart);
     const {checkoutPath} = useSelector((state:RootState) => state.global);
     const {cartItems, amount, total} = cart;
-    console.log(cartItems);
-    
-    
     const dispatch = useDispatch();
     
   return (
@@ -30,67 +27,69 @@ export const Cart = () => {
         <div className='container'>
             {amount !== 0 ?   
                 <div className='content'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Description</th>
-                                <th>Unit Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th>remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                cartItems.map((item, i) => {
-                                    const {id, name, newPrice, amount, total, chosenSize, chosenColor} = item;
-                                    const funParam:IDSizeColor = {id, size: chosenSize, color: chosenColor};
-                                    return(
-                                        <tr key={i}>
-                                            <td>
-                                                <Link 
-                                                className="link"
-                                                to={'/product' + id}
+                    <div className='for-table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    cartItems.map((item, i) => {
+                                        const {id, name, newPrice, amount, total, chosenSize, chosenColor} = item;
+                                        const funParam:IDSizeColor = {id, size: chosenSize, color: chosenColor};
+                                        return(
+                                            <tr key={i}>
+                                                <td>
+                                                    <Link 
+                                                    className="link"
+                                                    to={'/product' + id}
+                                                    >
+                                                    <img src={chosenColor.img} />
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link 
+                                                    className="link"
+                                                    to={'/product' + id}
+                                                    >
+                                                    {name}
+                                                    </Link>
+                                                    <span className='size'><b>size:</b> {chosenSize}</span>
+                                                    <span><b>color:</b> {chosenColor.name}</span>
+                                                </td>
+                                                <td>{newPrice}</td>
+                                                <td className='amount'>
+                                                    <button onClick={() => dispatch(increaseAmount(funParam))}>+</button> 
+                                                    <input type='number' value = {amount} onChange={()=>console.log("input")}/>
+                                                    <button onClick={() => dispatch(decreaseAmount(funParam))}>-</button> 
+                                                </td>
+                                                <td>{total}</td>
+                                                <td>
+                                                <button
+                                                className='remove' 
+                                                onClick={() => dispatch(removeFromCart(funParam))}
                                                 >
-                                                <img src={chosenColor.img} />
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link 
-                                                className="link"
-                                                to={'/product' + id}
-                                                >
-                                                {name}
-                                                </Link>
-                                                <span className='size'><b>size:</b> {chosenSize}</span>
-                                                <span><b>color:</b> {chosenColor.name}</span>
-                                            </td>
-                                            <td>{newPrice}</td>
-                                            <td className='amount'>
-                                                <button onClick={() => dispatch(increaseAmount(funParam))}>+</button> 
-                                                <input type='number' value = {amount} onChange={()=>console.log("input")}/>
-                                                <button onClick={() => dispatch(decreaseAmount(funParam))}>-</button> 
-                                            </td>
-                                            <td>{total}</td>
-                                            <td>
-                                            <button
-                                            className='remove' 
-                                            onClick={() => dispatch(removeFromCart(funParam))}
-                                            >
-                                                <RiDeleteBin2Line />
-                                            </button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                                                    <RiDeleteBin2Line />
+                                                </button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                     <div className='final-details flx'>
-                        <div className='promocode'>
+                        <div className='promocode hide-mobile'>
                         <input type="text" placeholder="promo code" />
-                        <button className='hide-mobile'>Apply</button>
+                        <button>Apply</button>
                         </div>
                         <div className='total'>
                         <b>Total: </b><span>{total}$</span>

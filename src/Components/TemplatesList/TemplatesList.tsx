@@ -21,7 +21,7 @@ const TemplatesList:FC<Props> = ({showTemplates, hideMobileMenu}) => {
                     const{id, name, path} = template;
                     return (
                       <li key={id}>
-                        <Link className='link' to={path}>{name}</Link>
+                        <Link className='link' onClick={hideMobileMenu} to={path}>{name}</Link>
                       </li>
                     )
                   })
@@ -47,14 +47,14 @@ const TemplatesList:FC<Props> = ({showTemplates, hideMobileMenu}) => {
                     const{id, name, path} = template;
                     return (
                       <li key={id}>
-                        <Link className='link' to={path}>{name}</Link>
+                        <Link className='link' onClick={hideMobileMenu} to={path}>{name}</Link>
                       </li>
                     )
                   })
                 }
               </ul>
             </div>
-          <ul className='brands'>
+          <ul className='brands hide-mobile'>
             {
               brands.map(template=> {
                 const{id, name, img, path} = template;

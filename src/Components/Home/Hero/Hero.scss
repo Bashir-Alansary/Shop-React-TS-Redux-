@@ -9,6 +9,9 @@
             height: 100%;
             display: flex;
             align-items: center;
+            @media only screen and (max-width: 600px) {
+                height: 85%;
+            }
             .text {
                 h5 {
                     margin: 0;
@@ -26,6 +29,10 @@
                 h1 {
                     font-size: 55px;
                     margin: 0;
+                    @media only screen and (max-width: 600px) {
+                        font-size: 48px;
+                        font-weight: normal;
+                    }
                 }
                 button {
                     display: flex;

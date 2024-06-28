@@ -10,7 +10,7 @@ import FilterWomenData from './FilterWomenData';
 import FilterMenData from './FilterMenData';
 import FilterKidsData from './FilterKidsData';
 import FilterAllData from './FilterAllData';
-import { ProductType, RangeType, SortShownVal } from '../Assets/types';
+import { InputEventType, ProductType, RangeType, SortShownVal } from '../Assets/types';
 import PriceRange from './PriceRange/PriceRange';
 import newArrivals from '../Assets/globalData/newArrivals';
 import { Item } from '../Item/Item';
@@ -142,7 +142,7 @@ const Shop:FC<Props> = ({img, category}) => {
     })
 
     /* filter colors function */
-    const filterColors = (e:React.ChangeEvent<HTMLInputElement>): void => {
+    const filterColors = (e:InputEventType): void => {
         if(e.target.checked) {
             if (!isColorCheck) {
                 if (!isTypeCheck) {
@@ -197,7 +197,7 @@ const Shop:FC<Props> = ({img, category}) => {
     }
 
     /* filter types function*/
-    const filterTypes = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const filterTypes = (e: InputEventType): void => {
         if(e.target.checked) {
             if (!isTypeCheck) {
                 if (!isColorCheck) {
@@ -251,7 +251,7 @@ const Shop:FC<Props> = ({img, category}) => {
     }
 
     /* filter price function*/
-    const filterPrices = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const filterPrices = (e: InputEventType): void => {
         if (!isColorCheck && !isTypeCheck) {
             const newProducts = categoryData.filter(item => item.newPrice >= range.minRange && item.newPrice <= range.maxRange);
             handleDropdownSort(valToSort, newProducts);
@@ -370,7 +370,7 @@ const Shop:FC<Props> = ({img, category}) => {
                             {
                                 dataPerPage.map(item => {
                                     return (
-                                        <Item itemClass = {listView? 'list-view' : 'item'} key = {item.id} {...item} />
+                                        <Item itemClass = {listView? 'list-view' : 'item shop-item'} key = {item.id} {...item} />
                                     )
                                 })
                             }

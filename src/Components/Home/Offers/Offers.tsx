@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import offersImg from "../../Assets/images/offers.png"
 import waveImg from "../../Assets/images/wave.png"
-import "./Offers.css"
+import "./Offers.scss"
 
 const Offers:FC = () => {
   return (
     <div className='offers'>
         <div className='container'>
-            <div className='content'>
+            <div className='content flx'>
                 <div className='text'>
                     <h1>Exclusive<br />offers for you</h1>
                     <span>only on best sellers products</span>

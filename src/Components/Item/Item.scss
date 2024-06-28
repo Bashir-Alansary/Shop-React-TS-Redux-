@@ -1,14 +1,30 @@
-.item-swiper {
-    width: 100% !important
-}
-
 .item {
     position: relative;
-    width: 23%;
-    margin-bottom: 40px;
+    &.item-swiper {
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+    &:not(.item-swiper){margin-bottom: 50px;}
 
+    &:not(.item-swiper, .shop-item) {
+        width: 23%;
+        @media only screen and (max-width: 600px) { // repeated code
+            width: 48%;
+            margin-right: 0;
+        }
+    }
+    &.shop-item {
+        width: 31%;
+        margin-right: 3.5%;
+        @media only screen and (max-width: 600px) { // repeated code
+            width: 48%;
+            margin-right: 0;
+        }
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
     .link {
-        color: black;
         &.imgbx {
             width: 100%;
             display: block;
@@ -25,6 +41,9 @@
         h3 {
             margin: 0;
             font-size: 18px;
+            @media only screen and (max-width: 600px) {
+                font-weight: normal;
+            }
         }
 
         .price {
@@ -143,12 +162,12 @@
     }
 }
 
-/* list view item */
+/* style groups*/
+.item, 
+.search-view {
+    
+}
 
-
-
-
-/***********************/
 .item,
 .list-view {
     .item-icons {
@@ -164,6 +183,11 @@
             border-radius: 50%;
             box-shadow: #63636333 0 2px 8px;
             transition: 0.5s;
+            @media only screen and (max-width: 600px) {
+                $val: 30px;
+                width: $val;
+                height: $val;
+            }
             &.link {display: flex !important;}
         }
         &:hover .icon-btn {
@@ -172,7 +196,6 @@
         }
     }
     
-
     
 }
 
@@ -181,6 +204,7 @@
 .list-view,
 .new-arrivals-view,
 .search-view {
+    .link {color: black;}
     .price span {
         font-size: 15px;
         &.new-price {
@@ -195,7 +219,6 @@
 }
 
 /* list && new arrivel && search views */
-.list-view,
 .new-arrivals-view,
 .search-view {
     .item-colors{display: none;}
@@ -215,13 +238,39 @@
     .content {
         display: flex;
         .imgbx {
-            width: 30%;
+            width: 33%;
             margin-right: 40px;
-            img {width: 100%;}
+            @media only screen and (max-width: 600px) {
+                width: 37%;
+            }
+            img {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #f5eded;
+            }
         }
         .item-details {
             width: 55%;
-            .description {margin: 20px 0;}
+            h3 {
+                @media only screen and (max-width: 600px) {
+                    margin: 0;
+                    font-weight: normal;
+                }
+            }
+            .price {
+                @media only screen and (max-width: 600px) {
+                    margin: 8px 0;
+                }
+            }
+            .description {
+                @media only screen and (max-width: 600px) {
+                    display: none;
+                }
+                margin: 20px 0;
+            }
+            .item-colors{
+                margin-bottom: 15px;
+            }
             .interact {
                 display: flex;
                 .compare-btn {margin-right: 20px;}
@@ -229,7 +278,7 @@
             }
 
             .main-btn {
-                margin-top: 30px;
+                margin-top: 20px;
                 .special-btn {
                     width: 250px;
                     padding: 8px;
@@ -286,25 +335,18 @@
 .item-colors {
     display: flex;
     margin-left: 1px;
+    .item-color {
+        margin-right: 10px;
+        .color-btn {
+            display: block;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            transition: 0.5s;
+            &.active {
+                border: 2px solid transparent !important;
+            }
+          }
+      }
   }
-
-  .item-color {
-    margin-right: 10px;
-  }
-
-  .item-color button.color-btn {
-    display: block;
-    height: 22px;
-    width: 22px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    transition: 0.5s;
-  }
-
-  .item-color button.color-btn:focus {
-    border: 2px solid transparent;
-  }
-
-  .color-btn.active {
-    border: 2px solid transparent !important;
-}

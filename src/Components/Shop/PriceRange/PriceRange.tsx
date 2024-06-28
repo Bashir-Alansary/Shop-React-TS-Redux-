@@ -1,11 +1,11 @@
 import React, { FC, useRef, useEffect } from 'react'
 import "./PriceRange.scss"
-import { RangeType } from '../../Assets/types';
+import { InputEventType, RangeType } from '../../Assets/types';
 
 interface Props {
     range: RangeType,
     setRange: React.Dispatch<React.SetStateAction<RangeType>>,
-    filterPrices: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    filterPrices: (e: InputEventType) => void,
     togglePrice: boolean,
 }
 
@@ -19,7 +19,7 @@ const PriceRange:FC<Props> = ({range, setRange, filterPrices, togglePrice}) => {
     const minRangeInput = minRangeInputRef.current;
     const maxRangeInput = maxRangeInputRef.current;
 
-    const handleRange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleRange = (e:InputEventType) => {
         
         const minRange = minRangeInput?.value !== undefined ? parseInt(minRangeInput?.value) : 0;
         const maxRange = maxRangeInput?.value !== undefined ? parseInt(maxRangeInput?.value) : 0;
