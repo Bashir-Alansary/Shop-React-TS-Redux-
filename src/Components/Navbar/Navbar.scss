@@ -5,6 +5,9 @@
     width: 100%;
     z-index: 999;
     background: linear-gradient(180deg,#d5d5d5, #f6f6f6);
+    &.active {
+        box-shadow: 0 1px 15px #221e1e26;
+    }
 
     .container {
         height: 100%;
@@ -17,6 +20,9 @@
                 width: fit-content;
                 img {
                     width: 100px;
+                    @media only screen and (max-width: 600px) {
+                        width: 90px;
+                    }
                 }
             }
 
@@ -37,7 +43,7 @@
 
                 &.show {
                     @media only screen and (max-width: 600px) {
-                        height: 506px;
+                        height: 650px;
                     }
                 }
 
@@ -69,6 +75,7 @@
                             }
                         }
                         .link {
+                            position: relative;
                             color: #000;
                             @media only screen and (max-width: 600px) {
                                 width: 100%;
@@ -79,6 +86,22 @@
                                 transition: 0.5s;
                                 border-bottom: 1px solid #fff;
                                 &:hover {background: #fff;}
+                            }
+
+                            &.active {
+                                color: rebeccapurple;
+                                &:after {
+                                    position: absolute;
+                                    content: "";
+                                    bottom: 0;
+                                    left: 25%;
+                                    width: 50%;
+                                    height: 2px;
+                                    background: #f35f26;
+                                    @media only screen and (max-width: 600px) {
+                                        display: none;
+                                    }
+                                }
                             }
 
                             &:after {

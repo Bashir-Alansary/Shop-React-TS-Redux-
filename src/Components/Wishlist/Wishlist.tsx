@@ -54,9 +54,9 @@ export const Wishlist = () => {
                                                     {name}
                                                     </Link>
                                                 </td>
-                                                <td>{newPrice}</td>
+                                                <td>${newPrice}</td>
                                                 <td className='special'>
-                                                    <button className='special-btn'>option</button>
+                                                    <Link className='link special-btn'to={'/product/' + id}>option</Link>
                                                 </td>
                                                 <td>
                                                 <button className='remove' onClick={()=>dispatch(removeFromWish(id))}>

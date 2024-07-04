@@ -102,6 +102,9 @@
             opacity: 0;
             pointer-events: none;
             transition: 0.7s;
+            @media only screen and (max-width: 600px) {
+                display: none;
+            }
 
             &:before {
                 content: "";
@@ -160,12 +163,6 @@
         opacity: 1;
         bottom: 140px;
     }
-}
-
-/* style groups*/
-.item, 
-.search-view {
-    
 }
 
 .item,
@@ -319,6 +316,9 @@
         font-size: 16px;
         color: #000;
         margin-bottom: 0;
+        @media only screen and (max-width: 600px) {
+            font-size: 14px;
+        }
         }
 
         .price span {

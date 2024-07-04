@@ -19,6 +19,9 @@
     }
 
     .search-content {
+        @media only screen and (max-width: 600px) {
+            width: 100%;
+        }
         .input-content {
             position: relative;
             width: 480px;
@@ -31,6 +34,9 @@
             overflow: hidden;
             border: 1px solid rgb(239, 229, 250);
             box-shadow: 2px 8px 40px rgba(0,0,0,.05);
+            @media only screen and (max-width: 600px) {
+                width: 100%;
+            }
 
             input {
                 position: absolute;
@@ -42,6 +48,9 @@
                 font-size: 15px;
                 background: hsl(0, 0%, 100%);
                 border: none;
+                @media only screen and (max-width: 600px) {
+                    width: 88%;;
+                }
                 &:focus {
                     outline: none;
                 }
@@ -116,6 +125,9 @@
         align-items: center;
         justify-content: center;
         margin-left: 30px;
+        @media only screen and (max-width: 600px) {
+            margin-left: 5px;
+        }
         .close-icon {
             transition: 0.5s;
             font-size: 25px;
@@ -127,18 +139,3 @@
         }
     }
 }
-
-
-@media only screen and (max-width: 600px) {
-    .sub-search .search-content .input-content {
-        width: 364px;
-    }
-
-    .search-view h3 {
-        font-size: 14px;
-    }
-
-    .sub-search button.close {
-        margin-left: 5px;
-    }
-  }

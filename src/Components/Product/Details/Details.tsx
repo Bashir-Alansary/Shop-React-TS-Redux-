@@ -92,8 +92,8 @@ const Details:FC<Props> = ({product}) => {
       <span className='category'>{category}</span>
       <hr />
       <div className='price'>
-        <span className='new-price price'>{newPrice}$</span>
-        <span className='old-price price'>{oldPrice}$</span>
+        <span className='new-price price'>${newPrice}</span>
+        <span className='old-price price'>${oldPrice}</span>
       </div>
       <div className='info'>
         <p>{desc}</p>

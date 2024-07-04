@@ -6,11 +6,12 @@ import ProductAbout from './ProductAbout/ProductAbout';
 import Related from './Related/Related';
 import "./Product.scss"
 import Details from './Details/Details';
+import { ProductType } from '../Assets/types';
 
 export const Product = () => {
     const {id}= useParams();
-    const product:any = products.find(item => item.id === Number(id)); 
-  return (
+    const product:ProductType | undefined = products.find(item => item.id === Number(id));
+  return product ? (
     <div className='product'>
         <div className='container'>
         <div className='content flx'>
@@ -21,5 +22,5 @@ export const Product = () => {
         <Related id={product.id} category={product.category}/>
         </div>
     </div>
-  )
+  ) : null
 }

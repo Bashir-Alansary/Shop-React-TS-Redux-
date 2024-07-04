@@ -17,8 +17,10 @@ export const wishSlice = createSlice({
         addToWish: (state, action) => {
             const theItem:ProductType | undefined = state.wishItems.find((item:ProductType) => item.id === action.payload);
             if (theItem === undefined) {
-                const item:any = products.find((item:any) => item.id === action.payload)
-                state.wishItems = [...state.wishItems, item];
+                const item:ProductType | undefined = products.find((item) => item.id === action.payload)
+                if (item !== undefined) {
+                    state.wishItems = [...state.wishItems, item];
+                }
             }
             
         },

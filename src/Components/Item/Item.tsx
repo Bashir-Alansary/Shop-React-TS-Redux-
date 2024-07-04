@@ -83,8 +83,8 @@ export const Item:FC<Props> = ({id, name, smallImgs, newPrice, oldPrice, desc, i
                 <h3>{name}</h3>
               </Link>
               <div className='price'>
-                <span className='new-price'>&#0036;{newPrice}</span>
-                <span className='old-price'>&#0036;{oldPrice}</span>
+                <span className='new-price'>${newPrice}</span>
+                <span className='old-price'>${oldPrice}</span>
               </div>
               <p className='description'>{desc}</p>
               <ul className='item-colors'>

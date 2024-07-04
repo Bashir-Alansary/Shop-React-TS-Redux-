@@ -17,8 +17,10 @@ export const compareSlice = createSlice({
         addToCompare: (state, action) => {
             const theItem:ProductType | undefined = state.compareItems.find((item:ProductType) => item.id === action.payload);
             if (theItem === undefined) {
-                const item:any = products.find((item:any) => item.id === action.payload)
-                state.compareItems = [...state.compareItems, item];
+                const item:ProductType | undefined = products.find((item) => item.id === action.payload)
+                if (item !== undefined) {
+                    state.compareItems = [...state.compareItems, item];
+                }
             }
             
         },

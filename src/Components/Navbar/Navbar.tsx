@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import Subcart from '../Subcart/Subcart';
 import SubSearch from '../SubSearch/SubSearch';
 import TemplatesList from '../TemplatesList/TemplatesList';
 import { setShowSubcart } from '../Redux/Slices/globalSlice';
+import { links } from './data';
 
 export const Navbar:FC = () => {
 
@@ -22,11 +23,12 @@ export const Navbar:FC = () => {
     const dispatch = useDispatch();
     const [showTemplates, setShowTemplates] = useState<boolean>(false);
     const [showSearch, setShowSearch] = useState<boolean>(false);
-    const [togglebtn, setToggleBtn] = useState(false);
+    const [togglebtn, setToggleBtn] = useState<boolean>(false);
+    const [activeNav, setActiveNav] = useState<boolean>(false);
 
     const location = useLocation();
 
-    const hideMobileMenu = (): void => { setToggleBtn(false);}
+    const hideMobileMenu = (): void => { setToggleBtn(false); }
 
     const handleToggleBtn = () => {
         if (togglebtn) {
@@ -37,24 +39,42 @@ export const Navbar:FC = () => {
             setToggleBtn(true);
         }
     }
-    
+
+    window.addEventListener('scroll', ()=> {
+        if (window.scrollY > 90) {
+          setActiveNav(true);
+        } else {
+          setActiveNav(false);
+        }
+      })
 
   return (
     <>
     { !location.pathname.includes(checkoutPath) &&
-    <div className='navbar'>
+    <div className={activeNav? 'navbar active' : 'navbar'}>
         <div className='container'>
             <div className='content flx'>
                 <div className='logo'>
-                    <img src={logo} />
+                    <Link to="/" onClick={hideMobileMenu}><img src={logo} /></Link>
                 </div>
                 <div className={togglebtn? 'main-links show' : 'main-links hide'}>
                     <ul className='links flx'>
-                        <li><NavLink className='link' onClick={hideMobileMenu} to="/">home</NavLink></li>
-                        <li><NavLink className='link' onClick={hideMobileMenu} to="/men">Men</NavLink></li>
-                        <li><NavLink className='link' onClick={hideMobileMenu} to="/women">Wemon</NavLink></li>
-                        <li><NavLink className='link' onClick={hideMobileMenu} to="/kids">Kids</NavLink></li>
-                        <li><NavLink className='link' onClick={hideMobileMenu} to="/shop">shop</NavLink></li>
+                        {
+                            links.map(link => {
+                                const {id, name, href} = link;
+                                return (
+                                    <li key={id}>
+                                        <Link 
+                                        className={location.pathname === href? 'link active' : 'link'}
+                                        onClick={hideMobileMenu}
+                                        to={href}
+                                        >
+                                        {name}
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                     {/* for pc */}
                     <div className='tamplates-link hide-mobile' onMouseEnter={()=>setShowTemplates(true)} onMouseLeave={()=>setShowTemplates(false)}>
@@ -84,8 +104,8 @@ export const Navbar:FC = () => {
                         </button>
                         <SubSearch showSearch={showSearch} setShowSearch={setShowSearch} />
                         
-                        <NavLink className="link wish" to="/wishlist"><img src={wishlist} /></NavLink>
-                        <NavLink className="link login" to="/login"><AiOutlineUser className='icon' /></NavLink>
+                        <Link className="link wish" to="/wishlist"><img src={wishlist} /></Link>
+                        <Link className="link login" to="/login"><AiOutlineUser className='icon' /></Link>
                     </div>
                     <button className='cart-btn op-btn' onClick={()=> dispatch(setShowSubcart(true))}>
                         <span className='num'>{amount}</span>

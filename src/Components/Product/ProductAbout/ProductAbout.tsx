@@ -39,8 +39,10 @@ const ProductAbout:FC<Props> = ({product}) => {
   const [activeId, setActiveId] = useState<number>(part.id);
 
   const filterParties = (id:number): void => {
-    const newPart: any = parties.find(part => part.id === id);
-    setPart(newPart);
+    const newPart:Part | undefined = parties.find(part => part.id === id);
+    if (newPart !== undefined) {
+      setPart(newPart);
+    }
     setActiveId(id);
   }
 

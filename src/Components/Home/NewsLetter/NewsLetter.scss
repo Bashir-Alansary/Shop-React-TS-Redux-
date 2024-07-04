@@ -78,6 +78,9 @@
                     border-radius: 25px;
                     border: 1px solid #abc5f5;
                     transition: 0.5s;
+                    @media only screen and (max-width: 600px) { 
+                        width: 100%;
+                    }
                     &:focus {
                         outline: none;
                         box-shadow: 0 1px 15px #c4d4f3;

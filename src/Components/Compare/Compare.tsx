@@ -35,7 +35,7 @@ export const Compare = () => {
                         <Link className='link' to={"/product/"+ id}  onClick={()=>window.scroll(0,0)}>
                           <h3>{name}</h3>
                         </Link>
-                          <span>{newPrice}$</span>
+                          <span>${newPrice}</span>
                           <Link className='link special-btn' to={"/product/"+id}><span className='hide-mobile'>select </span>options</Link>
                           <button className="remove" onClick={()=> dispatch(removeFromCompare(id))}>
                             <RiDeleteBin2Line className='remove-icon' />

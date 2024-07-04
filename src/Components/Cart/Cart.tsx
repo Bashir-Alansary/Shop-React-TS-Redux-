@@ -64,13 +64,13 @@ export const Cart = () => {
                                                     <span className='size'><b>size:</b> {chosenSize}</span>
                                                     <span><b>color:</b> {chosenColor.name}</span>
                                                 </td>
-                                                <td>{newPrice}</td>
+                                                <td>${newPrice}</td>
                                                 <td className='amount'>
                                                     <button onClick={() => dispatch(increaseAmount(funParam))}>+</button> 
                                                     <input type='number' value = {amount} onChange={()=>console.log("input")}/>
                                                     <button onClick={() => dispatch(decreaseAmount(funParam))}>-</button> 
                                                 </td>
-                                                <td>{total}</td>
+                                                <td>${total}</td>
                                                 <td>
                                                 <button
                                                 className='remove' 
@@ -92,7 +92,7 @@ export const Cart = () => {
                         <button>Apply</button>
                         </div>
                         <div className='total'>
-                        <b>Total: </b><span>{total}$</span>
+                        <b>Total: </b><span>${total}</span>
                         </div>
                         <div className='update-cart'>
                         <Link className='link special-btn' to={checkoutPath}>checkout</Link>

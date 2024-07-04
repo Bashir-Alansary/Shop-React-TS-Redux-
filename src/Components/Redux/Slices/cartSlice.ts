@@ -41,22 +41,23 @@ export const cartSlice = createSlice({
                     }
                 })
             } else {
-                const product:any = products.find((item:any) => item.id === id);
-                const finalItem = {
-                    ...product, amount: 1,
-                    total: product.price,
-                    chosenSize: product.sizes[0],
-                    chosenColor: color
+                const product:ProductType | undefined = products.find((item) => item.id === id);
+                if (product !== undefined) {
+                    const finalItem = {
+                        ...product, amount: 1,
+                        total: product?.newPrice,
+                        chosenSize: product?.sizes[0],
+                        chosenColor: color
+                    }
+                    state.cartItems = [...state.cartItems, finalItem];
                 }
-                
-                state.cartItems = [...state.cartItems, finalItem];
             }
         },
 
         removeFromCart: (state, action:PayloadAction<IDSizeColor>) => {
             const {id, size, color} = action.payload;
             state.cartItems = 
-            state.cartItems.filter((item:any) => 
+            state.cartItems.filter((item) => 
                 (item.id !== id)
                 || (item.id === id && item.chosenColor.id !== color.id)
                 || (item.id === id && item.chosenSize !== size)
@@ -112,16 +113,17 @@ export const cartSlice = createSlice({
                 );
                 
             if (theItem === undefined) {
-                const product:any = products.find((item:any) => item.id === id);
-                const finalItem = {
-                    ...product,
-                    amount,
-                    total: product.price,
-                    chosenSize: size,
-                    chosenColor: color
-                };
-                
-                state.cartItems = [...state.cartItems, finalItem];
+                const product:ProductType | undefined = products.find((item) => item.id === id);
+                if (product !== undefined) {
+                    const finalItem = {
+                        ...product,
+                        amount,
+                        total: product.newPrice,
+                        chosenSize: size,
+                        chosenColor: color
+                    };
+                    state.cartItems = [...state.cartItems, finalItem];
+                }
             } else {
                 state.cartItems.map(item => {
                     if (item.id === id && item.chosenSize === size && item.chosenColor.id === color.id) {
